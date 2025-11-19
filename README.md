@@ -1,5 +1,7 @@
 # Simone Pedrazzi's Portfolio Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b3a363a6-0a1b-4cee-b07f-3193440e7ff0/deploy-status)](https://app.netlify.com/projects/vocal-zabaione-58bfbe/deploys)
+
 This is a personal portfolio website for Simone Pedrazzi, a Senior Engineer. It's a single-page site built with Hugo and the `hugo-scroll` theme, showcasing skills in Python, Cloud, and Distributed Architecture.
 
 ## Getting Started

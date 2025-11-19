@@ -1,0 +1,44 @@
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<style>
+  :root {
+    /* Override theme variables for high-contrast header */
+    --cover-text-color: #ffffff;
+    --cover-title-text-shadow: none;
+
+    /* Override button colors */
+    --highlight: #ffffff; /* Default background: white */
+    --highlight-contrast: #212529; /* Default text: dark gray */
+    --highlight-inverse: #e0e0e0; /* Hover background: light gray */
+    --highlight-inverse-contrast: #212529; /* Hover text: dark gray */
+  }
+
+  /* --- Custom Header Styles --- */
+
+  /* Resize SVG Logo */
+  #blog-logo.svg-logo svg {
+    max-width: 100px; /* Adjust as needed */
+    height: auto;
+    display: block; /* Ensures proper sizing */
+    margin: 0 auto 10px auto; /* Centers and adds some space below */
+  }
+
+  /* Ensure SVG logo is white */
+  #blog-logo.svg-logo svg path {
+    fill: var(--cover-text-color);
+  }
+
+  /* Style the header navigation buttons */
+  a.btn.site-menu {
+    border: none; /* Remove the border */
+    border-radius: 0 !important; /* Remove rounded corners */
+    -webkit-border-radius: 0 !important;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Header Social Icons Hover Color */
+  .blog-description a:hover {
+    color: #dddddd;
+  }
+</style>

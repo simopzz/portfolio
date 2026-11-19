@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T09:26:53+00:00",
+  "title": "Design System: simopzz.com",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Bond Paper",
+        "canonical": "#f4f5f2",
+        "tonalRamp": [
+          "#2b2c2a",
+          "#454643",
+          "#62635f",
+          "#81827e",
+          "#a2a39f",
+          "#c4c5c1",
+          "#e2e3df",
+          "#f4f5f2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#1d1f22",
+        "tonalRamp": [
+          "#1d1f22",
+          "#33363a",
+          "#4b4f54",
+          "#656a70",
+          "#81868c",
+          "#a0a4a9",
+          "#c2c5c8",
+          "#e3e4e6"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Soft Graphite",
+        "canonical": "#4b5057",
+        "tonalRamp": [
+          "#1f2225",
+          "#33373c",
+          "#4b5057",
+          "#646a72",
+          "#80868e",
+          "#9ea3aa",
+          "#c0c3c8",
+          "#e2e4e6"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Construction Line",
+        "canonical": "#9aa0a7",
+        "tonalRamp": [
+          "#2a2d31",
+          "#41454a",
+          "#5b6066",
+          "#777c83",
+          "#9aa0a7",
+          "#b4b8bd",
+          "#cfd2d5",
+          "#eaebed"
+        ]
+      },
+      "red": {
+        "role": "primary",
+        "displayName": "Redline",
+        "canonical": "#c22a16",
+        "tonalRamp": [
+          "#3d0f08",
+          "#62180d",
+          "#8d2112",
+          "#c22a16",
+          "#d9533f",
+          "#e8836f",
+          "#f3b4a6",
+          "#fbe1da"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name, once, as the cover drawing title."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Sheet titles, with a double underline rule."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Drawing-list titles, view names, the role line."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Notes and project prose, 46-62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Block headings, scale notes, captions, the copy button."
+      },
+      "label-sm": {
+        "displayName": "Label small",
+        "purpose": "Title-block keys, table column heads, zone numerals."
+      },
+      "kanji": {
+        "displayName": "Kanji",
+        "purpose": "Three-glyph subset beside the dandori sheet title only."
+      }
+    },
+    "lineWeights": [
+      {
+        "name": "w-thick",
+        "value": "2px",
+        "purpose": "Pen border, title-block top/left, primary shapes, heading rules."
+      },
+      {
+        "name": "w-mid",
+        "value": "1.25px",
+        "purpose": "Externals, links and arrows, legend and revision boxes, copy button, delta and cloud strokes."
+      },
+      {
+        "name": "w-thin",
+        "value": "0.75px",
+        "purpose": "Frame, zone ticks, table rows, underlines, thin drawing strokes in ink-2."
+      }
+    ],
+    "shadows": [
+      {
+        "name": "double-rule",
+        "value": "0 4px 0 -3px var(--ink)",
+        "purpose": "Not depth: a 1px line under a heading's border to draw a double underline (0 6px 0 -5px on the cover title, 0 3px 0 -2px on view names)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Hover colour (160ms), lettering wipe, fades."
+      },
+      {
+        "name": "ease-plot",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Pen border and linework plotting."
+      },
+      {
+        "name": "pen-border",
+        "value": "520ms horizontal / 420ms vertical, clockwise, sequential",
+        "purpose": "Cover border drawn by the pen on load."
+      },
+      {
+        "name": "lettering-wipe",
+        "value": "900ms clip-path left to right, lines staggered 270ms",
+        "purpose": "Cover title lettered in, then its double rule."
+      },
+      {
+        "name": "linework-plot",
+        "value": "1600ms stroke-dashoffset on pathLength 1",
+        "purpose": "Key plan on load; project drawings once on first scroll into view (20% visible); dashes, arrowheads, lettering fade after."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "none",
+        "purpose": "Under prefers-reduced-motion every sheet is already drawn."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "portrait-sheet",
+        "value": "max-width: 1199px"
+      },
+      {
+        "name": "tall-drawing",
+        "value": "max-width: 599px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Copy Button",
+      "kind": "button",
+      "refersTo": "copy-button",
+      "description": "The only button: copies the email beside the title-block link.",
+      "html": "<button class=\"ds-copy\" type=\"button\">Copy</button>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-copy{min-height:32px;padding:4px 12px;font-family:var(--font,'Osifont','Arial Narrow',sans-serif);font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink,#1d1f22);background:transparent;border:var(--w-mid,1.25px) solid var(--ink,#1d1f22);border-radius:0;cursor:pointer;transition:color 160ms cubic-bezier(0.16,1,0.3,1),border-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-copy:hover{color:var(--red,#c22a16);border-color:var(--red,#c22a16)}.ds-copy:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}.ds-copy:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Sheet Index",
+      "kind": "nav",
+      "refersTo": "sheet-index-tab",
+      "description": "Fixed binder-tab strip of sheet numbers; the sheet in view is red.",
+      "html": "<nav class=\"ds-idx\"><a href=\"#\" aria-current=\"location\">01</a><a href=\"#\">02</a><a href=\"#\">03</a><a href=\"#\">04</a></nav>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-idx{display:flex;justify-content:flex-end;background:var(--paper,#f4f5f2);border-bottom:0.75px solid var(--ink,#1d1f22);font-family:var(--font,'Osifont',sans-serif)}.ds-idx a{position:relative;display:grid;place-items:center;min-width:40px;min-height:30px;padding:0 8px;font-size:0.75rem;letter-spacing:0.08em;color:var(--ink-2,#4b5057);text-decoration:none;border-left:0.75px solid var(--ink,#1d1f22)}.ds-idx a:last-child{border-right:0.75px solid var(--ink,#1d1f22)}.ds-idx a:hover,.ds-idx a[aria-current]{color:var(--red,#c22a16)}.ds-idx a[aria-current]::after{content:'';position:absolute;left:8px;right:8px;bottom:4px;height:2px;background:var(--red,#c22a16)}.ds-idx a:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
+    },
+    {
+      "name": "Drawing List",
+      "kind": "nav",
+      "refersTo": "drawing-list-row",
+      "description": "Cover schedule of sheets that doubles as the page navigation.",
+      "html": "<div class=\"ds-dl\"><div class=\"ds-dl-h\"><span>Sheet</span><span>Title</span><span>Rev</span></div><a href=\"#\"><span class=\"n\">01</span><span class=\"t\">Cover</span><span class=\"n r\">A</span></a><a href=\"#\"><span class=\"n\">03</span><span class=\"t\">Dandori</span><span class=\"n r\">B</span></a></div>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-dl{font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);min-width:280px}.ds-dl-h,.ds-dl a{display:grid;grid-template-columns:4.5rem 1fr 3rem;align-items:center}.ds-dl-h{padding:6px 0;font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057);border-top:2px solid var(--ink,#1d1f22);border-bottom:1.25px solid var(--ink,#1d1f22)}.ds-dl a{min-height:46px;text-decoration:none;color:inherit;border-bottom:0.75px solid var(--ink,#1d1f22)}.ds-dl .t{font-size:1.125rem;text-transform:uppercase;letter-spacing:0.06em}.ds-dl .n{color:var(--ink-2,#4b5057)}.ds-dl .r,.ds-dl-h span:last-child{text-align:right}.ds-dl a:hover .t,.ds-dl a:hover .n{color:var(--red,#c22a16)}.ds-dl a:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
+    },
+    {
+      "name": "Title Block",
+      "kind": "card",
+      "refersTo": "title-block-cell",
+      "description": "Ruled identity block at each sheet's bottom right, carrying the email action.",
+      "html": "<div class=\"ds-tb\"><div class=\"c w\"><span class=\"k\">Drawn by</span><span class=\"v up\">Simone Pedrazzi</span></div><div class=\"c\"><span class=\"k\">Sheet</span><span class=\"v\">03 / 04</span></div><div class=\"c s\"><span class=\"k\">Contact</span><span class=\"v\"><a class=\"m\" href=\"#\">name@example.com</a></span></div><div class=\"c w l\"><span class=\"k\">Rev</span><span class=\"v\"><svg width=\"22\" height=\"20\" viewBox=\"0 0 22 20\"><path d=\"M11 1.6 L20.6 18.4 H1.4 Z\" fill=\"none\" stroke=\"#c22a16\" stroke-width=\"1.25\" stroke-linejoin=\"round\"/><text x=\"11\" y=\"15.6\" text-anchor=\"middle\" font-size=\"11\" fill=\"#c22a16\">B</text></svg> 2026-11-03</span></div><div class=\"c l\"><span class=\"k\">Scale</span><span class=\"v\">NTS</span></div></div>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-tb{display:grid;grid-template-columns:2fr 1fr;max-width:440px;font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);background:var(--paper,#f4f5f2);border-top:2px solid var(--ink,#1d1f22);border-left:2px solid var(--ink,#1d1f22)}.ds-tb .c{display:flex;flex-direction:column;gap:2px;padding:8px 12px 9px;border-bottom:0.75px solid var(--ink,#1d1f22)}.ds-tb .w{border-right:0.75px solid var(--ink,#1d1f22)}.ds-tb .s{grid-column:1/-1}.ds-tb .l{border-bottom:0}.ds-tb .k{font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057)}.ds-tb .v{font-size:1rem;line-height:1.3;display:flex;align-items:center;gap:8px}.ds-tb .up{text-transform:uppercase;letter-spacing:0.06em}.ds-tb .m{font-size:1.25rem;color:var(--red,#c22a16);text-decoration-thickness:1.25px;text-underline-offset:0.24em}.ds-tb .m:hover{color:var(--ink,#1d1f22)}.ds-tb .m:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
+    },
+    {
+      "name": "Revision Table",
+      "kind": "custom",
+      "refersTo": "revision-row",
+      "description": "Boxed Rev / Date / Description table with delta markers and a red pending row.",
+      "html": "<div class=\"ds-rv\"><div class=\"r h\"><span>Rev</span><span>Date</span><span>Description</span></div><div class=\"r\"><span><svg width=\"22\" height=\"20\" viewBox=\"0 0 22 20\"><path d=\"M11 1.6 L20.6 18.4 H1.4 Z\" fill=\"none\" stroke=\"#c22a16\" stroke-width=\"1.25\" stroke-linejoin=\"round\"/><text x=\"11\" y=\"15.6\" text-anchor=\"middle\" font-size=\"11\" fill=\"#c22a16\">A</text></svg></span><span class=\"d\">2026-10-21</span><span>First release.</span></div><div class=\"r p\"><span><i class=\"cl\"></i></span><span class=\"d\">Next</span><span>Pending milestone.</span></div></div>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-rv{max-width:420px;font-family:var(--font,'Osifont',sans-serif);font-size:0.9375rem;color:var(--ink,#1d1f22);border:1.25px solid var(--ink,#1d1f22)}.ds-rv .r{display:grid;grid-template-columns:52px 7.2em 1fr;align-items:center}.ds-rv .r+.r{border-top:0.75px solid var(--ink,#1d1f22)}.ds-rv .r>span{padding:7px 10px}.ds-rv .r>span+span{border-left:0.75px solid var(--ink,#1d1f22)}.ds-rv .r>span:first-child{display:flex;justify-content:center}.ds-rv .h{font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057);border-bottom:1.25px solid var(--ink,#1d1f22)}.ds-rv .d{color:var(--ink-2,#4b5057)}.ds-rv .p,.ds-rv .p .d{color:var(--red,#c22a16)}.ds-rv .p .d{text-transform:uppercase;letter-spacing:0.1em;font-size:0.75rem}.ds-rv .cl{--arc:transparent 4.6px,var(--red,#c22a16) 5px 6.2px,transparent 6.6px;display:inline-block;width:36px;height:22px;background:radial-gradient(circle at 50% 100%,var(--arc)) top left/12px 7px repeat-x,radial-gradient(circle at 50% 0,var(--arc)) bottom left/12px 7px repeat-x,radial-gradient(circle at 100% 50%,var(--arc)) top left/7px 11px repeat-y,radial-gradient(circle at 0 50%,var(--arc)) top right/7px 11px repeat-y}"
+    },
+    {
+      "name": "Drawing Legend",
+      "kind": "custom",
+      "refersTo": "legend",
+      "description": "Symbol key for the drawing grammar: box, external, data store, domain core, flow.",
+      "html": "<div class=\"ds-lg\"><span class=\"h\">Legend</span><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M3 3 H53 V27 H3 Z\"/></svg><span>Service or process</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"m d\" d=\"M3 3 H53 V27 H3 Z\"/></svg><span>External service</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M6 7 A22 4.5 0 0 1 50 7 V23 A22 4.5 0 0 1 6 23 Z\"/><path class=\"m\" d=\"M6 7 A22 4.5 0 0 0 50 7\"/></svg><span>Data store</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M28 2 L41 9.5 V20.5 L28 28 L15 20.5 V9.5 Z\"/></svg><span>Domain core</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"m\" d=\"M4 15 H44\"/><path fill=\"#1d1f22\" d=\"M42 10.5 L52 15 L42 19.5 Z\"/></svg><span>Call or data flow</span></div></div>",
+      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-lg{max-width:300px;padding:14px 16px 6px;font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);border:1.25px solid var(--ink,#1d1f22)}.ds-lg .h{display:block;margin-bottom:8px;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057)}.ds-lg div{display:grid;grid-template-columns:64px 1fr;align-items:center;min-height:40px;border-top:0.75px solid var(--ink-3,#9aa0a7)}.ds-lg svg{width:56px;height:30px}.ds-lg path{fill:none;stroke:var(--ink,#1d1f22);stroke-linejoin:round;stroke-linecap:round}.ds-lg .t{stroke-width:2px}.ds-lg .m{stroke-width:1.25px}.ds-lg .d{stroke-dasharray:7 5;stroke-linecap:butt}.ds-lg div span{font-size:0.875rem;text-transform:uppercase;letter-spacing:0.08em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Issued Drawing Set",
+    "overview": "**Creative North Star: \"The Issued Drawing Set\"**\n\nThe site is a set of engineering sheets, not a web page with sections. Every screen is a sheet: a hairline frame with a lettered and numbered zone grid, a heavy pen border drawn inside it, a ruled title block at the bottom right, and a sheet number out of the set total. Work is shown as architecture drawings in a fixed linework grammar, and each project carries an honest revision table. Content sits in the conventions of the drawing office, and the conventions do the persuading.\n\nThe material is white bond paper and graphite. Everything is ink at three line weights; depth, hierarchy and grouping come from stroke weight and rules, never from fills, tints or shadows. Red is a redline in the drafting sense: it marks revision state (clouds, delta triangles, pending rows) and the one action (the email). Type is ISO 3098 technical lettering throughout, mostly uppercase and tracked, with tabular figures.\n\nDensity is that of a real sheet: generous empty field around a drawing, tight ruled tables in the blocks. Motion is a plotter: the border is pen-drawn, the title is lettered in, linework plots once, and with reduced motion everything is already drawn.",
+    "keyCharacteristics": [
+      "Every screen is a framed, zoned, numbered sheet with a title block.",
+      "One typeface (Osifont), uppercase and tracked for anything that is a label.",
+      "Three line weights carry all hierarchy; zero radius, zero fills, zero shadows.",
+      "Red only for revision state and the email action.",
+      "Drawings are inline SVG in a small fixed symbol vocabulary, explained by a legend."
+    ],
+    "rules": [
+      {
+        "name": "The Redline Rule",
+        "body": "Red marks what changed, what is pending, or what to press. It never decorates, never fills an area, and never colours a heading.",
+        "section": "colors"
+      },
+      {
+        "name": "The Construction Line Rule",
+        "body": "`ink-3` is for strokes alone. Any lettering, however minor, is `ink-2` or darker.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Hand Rule",
+        "body": "Osifont sets every glyph on the page. No second Latin face, no bold, no italic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lettered Label Rule",
+        "body": "Anything that names a field, column, block or scale is uppercase and tracked 0.08–0.14em. Prose is sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Line Weight Rule",
+        "body": "Hierarchy is stroke weight. If something needs to stand forward, give it a heavier line, not a fill or shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** put every new screen on a sheet: frame, zone grid, pen border, title block with sheet `NN / NN` and a revision.",
+      "**Do** express hierarchy with the three line weights (2px, 1.25px, 0.75px) and with case and tracking, at weight 400.",
+      "**Do** reserve red for revision state (clouds, deltas, pending rows) and the email action.",
+      "**Do** draw new systems with the legend's symbols only, and give each drawing a tall layout for under 600px.",
+      "**Do** keep `ink-3` (2.4:1) for lines; set the smallest lettering in `ink-2`.",
+      "**Do** caption views \"Scale NTS\" and leave the drawing undimensioned.",
+      "**Do** keep every animation optional: under reduced motion the sheet is already drawn."
+    ],
+    "donts": [
+      "**Don't** use a blue cyanotype ground, cream paper, or a dark theme: the world is graphite on white bond.",
+      "**Don't** introduce a second colour, a tint, a filled area of red, or a gradient other than the cloud scallops.",
+      "**Don't** round corners or add drop shadows; the offset 1px rule under headings is the only shadow, and it draws a line.",
+      "**Don't** add a second typeface, bold, or italic.",
+      "**Don't** invent dimensions, metrics, skill bars or logo walls in the drawings or blocks.",
+      "**Don't** replace the title block or drawing list with cards, a hero, or a top nav bar."
+    ]
+  }
+}

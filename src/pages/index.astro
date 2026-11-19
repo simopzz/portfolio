@@ -1,0 +1,231 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Sheet from '../components/Sheet.astro';
+import TitleBlock from '../components/TitleBlock.astro';
+import Drawing from '../components/Drawing.astro';
+import Delta from '../components/Delta.astro';
+import { site } from '../site';
+import { dandori } from '../drawings/dandori';
+import { tegakko } from '../drawings/tegakko';
+import type { Drawing as DrawingData } from '../drawings/types';
+
+const drawings: Record<string, DrawingData> = { dandori, tegakko };
+const projects = (await getCollection('projects')).sort((a, b) => a.data.sheet - b.data.sheet);
+const rendered = await Promise.all(projects.map(async (p) => ({ p, Content: (await render(p)).Content })));
+
+const total = 2 + projects.length;
+const pad = (n: number) => String(n).padStart(2, '0');
+const sheetId = (n: number) => `sheet-${pad(n)}`;
+const lastRev = (p: (typeof projects)[number]) => p.data.revisions[p.data.revisions.length - 1];
+
+const list = [
+  { n: 1, title: 'Cover', rev: site.rev },
+  { n: 2, title: 'General notes', rev: site.rev },
+  ...projects.map((p) => ({ n: p.data.sheet, title: p.data.title, rev: lastRev(p).rev })),
+];
+
+const notes = [
+  'Senior engineer. Works mainly in Python, on cloud platforms, designing distributed backend systems.',
+  'Usual tools: FastAPI, PostgreSQL, Docker, Kubernetes, AWS and GCP.',
+  'Builds with microservices and Domain-Driven Design, shipped through CI/CD.',
+  'Raises code quality, tightens development workflows, and integrates AI solutions.',
+  'Has led cross-functional teams and argued for clean architecture.',
+  'Industries so far: AI-driven finance, biotech, fashion.',
+  'Fluent in Italian and English.',
+  `Sheets ${pad(3)} and ${pad(total)} are personal projects, designed, built and deployed end to end.`,
+];
+---
+<Base>
+  <a class="skip" href={`#${sheetId(2)}`}>Skip to general notes</a>
+
+  <nav class="sheet-index" aria-label="Sheets">
+    {list.map((s) => <a href={`#${sheetId(s.n)}`} aria-label={`Sheet ${pad(s.n)}: ${s.title}`}>{pad(s.n)}</a>)}
+  </nav>
+
+  <main>
+    <Sheet id={sheetId(1)} sheet={1} label="Sheet 01, cover" class="cover">
+      <header class="cover-title">
+        <h1 class="title"><span>Simone</span> <span>Pedrazzi</span></h1>
+        <p class="role">{site.role}</p>
+        <p class="hook">Designs backend systems and ships them end to end. Two of them are drawn on sheets {pad(3)} and {pad(total)}.</p>
+      </header>
+
+      <nav class="dwg-list" aria-labelledby="dwg-list-h">
+        <h2 id="dwg-list-h" class="block-h">Drawing list</h2>
+        <div class="dl-head" aria-hidden="true"><span>Sheet</span><span>Title</span><span>Rev</span></div>
+        <ol>
+          {list.map((s) => (
+            <li>
+              <a href={`#${sheetId(s.n)}`}>
+                <span class="dl-n">{pad(s.n)}</span>
+                <span class="dl-t">{s.title}</span>
+                <span class="dl-r"><span class="visually-hidden">revision </span>{s.rev}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div class="keyplan" aria-hidden="true">
+        <span class="block-h">Key plan</span>
+        <div class="kp-row">
+          {projects.map((p) => (
+            <a class="kp" href={`#${sheetId(p.data.sheet)}`} tabindex="-1">
+              <Drawing drawing={drawings[p.id]} id={`kp-${p.id}`} bare />
+              <span class="kp-cap">{pad(p.data.sheet)} {p.data.title}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <TitleBlock sheet={1} total={total} title="Cover" rev={site.rev} date={site.issued} full />
+    </Sheet>
+
+    <Sheet id={sheetId(2)} sheet={2} label="Sheet 02, general notes" class="notes-sheet">
+      <div class="gn">
+        <h2 class="sheet-h">General notes</h2>
+        <ol class="gn-list">
+          {notes.map((n) => <li>{n}</li>)}
+        </ol>
+      </div>
+
+      <aside class="legend" aria-labelledby="legend-h">
+        <h3 id="legend-h" class="block-h">Legend</h3>
+        <dl>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln thick" d="M3 3 H53 V27 H3 Z" /></svg></dt><dd>Service or process</dd></div>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln mid dash" d="M3 3 H53 V27 H3 Z" /></svg></dt><dd>External service</dd></div>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln thick" d="M6 7 A22 4.5 0 0 1 50 7 V23 A22 4.5 0 0 1 6 23 Z" /><path class="ln mid" d="M6 7 A22 4.5 0 0 0 50 7" /></svg></dt><dd>Data store</dd></div>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln thick" d="M28 2 L41 9.5 V20.5 L28 28 L15 20.5 V9.5 Z" /></svg></dt><dd>Domain core</dd></div>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln mid" d="M22 9 H34 V21 H22 Z" /></svg></dt><dd>Port</dd></div>
+          <div><dt><svg viewBox="0 0 56 30" aria-hidden="true"><path class="ln mid" d="M4 15 H44" /><path class="arrowhead" d="M42 10.5 L52 15 L42 19.5 Z" /></svg></dt><dd>Call or data flow</dd></div>
+          <div><dt><span class="cloud-chip" aria-hidden="true"></span></dt><dd>Pending revision</dd></div>
+          <div><dt><Delta rev="B" /></dt><dd>Revision marker</dd></div>
+          <div><dt class="legend-nts">NTS</dt><dd>Not to scale</dd></div>
+        </dl>
+      </aside>
+
+      <TitleBlock sheet={2} total={total} title="General notes" rev={site.rev} date={site.issued} />
+    </Sheet>
+
+    {rendered.map(({ p, Content }) => (
+      <Sheet id={sheetId(p.data.sheet)} sheet={p.data.sheet} label={`Sheet ${pad(p.data.sheet)}, ${p.data.title}`} class="project">
+        <figure class="view">
+          <Drawing drawing={drawings[p.id]} id={p.id} title={`${p.data.title}: ${p.data.drawingTitle.toLowerCase()} drawing`} />
+          <figcaption class="view-title">
+            <span class="view-name">{p.data.drawingTitle}</span>
+            <span class="view-scale">Scale NTS</span>
+          </figcaption>
+        </figure>
+
+        <div class="spec">
+          <h2 class="sheet-h">
+            {p.data.title}
+            {p.data.kanji && <span class="kanji" lang="ja">{p.data.kanji}</span>}
+          </h2>
+          <div class="prose"><Content /></div>
+
+          <ul class="refs">
+            {p.data.links.map((l) => (
+              <li class:list={{ clouded: l.private }}>
+                {l.private ? (
+                  <span class="ref ref-private"><s>{l.href.replace('https://', '')}</s></span>
+                ) : (
+                  <a class="ref" href={l.href}>{l.label}<span class="ref-url">{l.href.replace('https://', '')}</span></a>
+                )}
+                {l.note && <span class="ref-note">{l.note}</span>}
+              </li>
+            ))}
+          </ul>
+
+          <div class="revs" role="table" aria-label={`${p.data.title} revisions`}>
+            <div class="rv rv-head" role="row"><span role="columnheader">Rev</span><span role="columnheader">Date</span><span role="columnheader">Description</span></div>
+            {p.data.revisions.map((r) => (
+              <div class="rv" role="row">
+                <span role="cell"><Delta rev={r.rev} /><span class="visually-hidden">{r.rev}</span></span>
+                <span role="cell" class="rv-date">{r.date}</span>
+                <span role="cell">{r.text}</span>
+              </div>
+            ))}
+            {p.data.pending && (
+              <div class="rv rv-pending" role="row">
+                <span role="cell"><span class="cloud-chip" aria-hidden="true"></span><span class="visually-hidden">Pending</span></span>
+                <span role="cell" class="rv-date">Next</span>
+                <span role="cell">{p.data.pending}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <TitleBlock
+          sheet={p.data.sheet}
+          total={total}
+          title={`${p.data.title}: ${p.data.drawingTitle}`}
+          rev={lastRev(p).rev}
+          date={lastRev(p).date}
+        />
+      </Sheet>
+    ))}
+  </main>
+
+  <script>
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Plot each project drawing once, when it first comes into view.
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            e.target.classList.replace('armed', 'plot');
+            io.unobserve(e.target);
+          }
+        },
+        { threshold: 0.2 },
+      );
+      for (const d of document.querySelectorAll('.project .drawing')) {
+        if (d.getBoundingClientRect().top < innerHeight) continue;
+        d.classList.add('armed');
+        io.observe(d);
+      }
+    }
+
+    // Mark the sheet under the middle of the viewport in the sheet index.
+    const tabs = [...document.querySelectorAll<HTMLAnchorElement>('.sheet-index a')];
+    const so = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          for (const a of tabs) {
+            if (a.hash === `#${e.target.id}`) a.setAttribute('aria-current', 'location');
+            else a.removeAttribute('aria-current');
+          }
+        }
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    );
+    for (const s of document.querySelectorAll('.sheet')) so.observe(s);
+
+    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+      const status = b.parentElement?.querySelector('.copy-status');
+      let t: number | undefined;
+      b.addEventListener('click', async () => {
+        let ok = true;
+        try {
+          await navigator.clipboard.writeText(b.dataset.copy ?? '');
+        } catch {
+          ok = false;
+        }
+        b.textContent = ok ? 'Copied' : 'Copy failed';
+        b.classList.toggle('done', ok);
+        if (status) status.textContent = ok ? 'Email address copied' : 'Copy failed. Use the email link instead.';
+        clearTimeout(t);
+        t = window.setTimeout(() => {
+          b.textContent = 'Copy';
+          b.classList.remove('done');
+          if (status) status.textContent = '';
+        }, 2200);
+      });
+    }
+  </script>
+</Base>

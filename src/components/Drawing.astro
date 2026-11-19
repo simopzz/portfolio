@@ -1,0 +1,137 @@
+---
+import type { Drawing, Layout, Shape } from '../drawings/types';
+
+interface Props {
+  drawing: Drawing;
+  id: string;
+  /** linework only, for the cover's key plan */
+  bare?: boolean;
+  title?: string;
+}
+const { drawing, id, bare = false, title } = Astro.props;
+
+const rect = (x: number, y: number, w: number, h: number) => `M${x} ${y} H${x + w} V${y + h} H${x} Z`;
+
+function hex(cx: number, cy: number, r: number) {
+  const pts = [-90, -30, 30, 90, 150, 210].map((a) => {
+    const t = (a * Math.PI) / 180;
+    return `${(cx + r * Math.cos(t)).toFixed(1)} ${(cy + r * Math.sin(t)).toFixed(1)}`;
+  });
+  return `M${pts.join(' L')} Z`;
+}
+
+// Scalloped revision cloud, traced clockwise so every arc bulges outward.
+function cloud(x: number, y: number, w: number, h: number, step = 18) {
+  const nx = Math.max(2, Math.round(w / step));
+  const ny = Math.max(2, Math.round(h / step));
+  const sx = w / nx;
+  const sy = h / ny;
+  let d = `M${x} ${y}`;
+  let cx = x;
+  let cy = y;
+  const go = (dx: number, dy: number, n: number) => {
+    const r = (Math.hypot(dx, dy) * 0.62).toFixed(1);
+    for (let i = 0; i < n; i++) {
+      cx += dx;
+      cy += dy;
+      d += ` A${r} ${r} 0 0 1 ${cx.toFixed(1)} ${cy.toFixed(1)}`;
+    }
+  };
+  go(sx, 0, nx);
+  go(0, sy, ny);
+  go(-sx, 0, nx);
+  go(0, -sy, ny);
+  return d;
+}
+
+type Ln = { d: string; cls: string };
+type Tx = { x: number; y: number; text: string; cls: string; anchor: string };
+
+function build(l: Layout) {
+  const fs = l.fs ?? 1;
+  const lines: Ln[] = [];
+  const texts: Tx[] = [];
+  const t = (x: number, y: number, text: string, cls: string, anchor = 'middle') => texts.push({ x, y, text, cls, anchor });
+
+  if (l.boundary) {
+    const b = l.boundary;
+    lines.push({ d: rect(b.x, b.y, b.w, b.h), cls: 'thin dash' });
+    if (b.label) t(b.label.x, b.label.y, b.label.text, 'note', b.label.anchor ?? 'start');
+    if (b.note) t(b.note.x, b.note.y, b.note.text, 'note', b.note.anchor ?? 'start');
+  }
+
+  for (const s of l.shapes as Shape[]) {
+    if (s.kind === 'box') {
+      lines.push({ d: rect(s.x, s.y, s.w, s.h), cls: s.dashed ? 'mid dash' : 'thick' });
+      const cx = s.x + s.w / 2;
+      const head = s.rows ? (s.head ?? 60) : s.h;
+      const mid = s.y + head / 2;
+      if (s.sub) {
+        t(cx, mid - 3 * fs, s.label, 'label');
+        t(cx, mid + 15 * fs, s.sub, 'sub');
+      } else t(cx, mid + 5 * fs, s.label, 'label');
+      if (s.rows) {
+        const rh = (s.h - head) / s.rows.length;
+        s.rows.forEach((row, i) => {
+          const y = s.y + head + i * rh;
+          lines.push({ d: `M${s.x} ${y} H${s.x + s.w}`, cls: i === 0 ? 'mid' : 'thin' });
+          t(s.x + 16, y + rh / 2 + 4.5 * fs, row, 'row', 'start');
+        });
+      }
+    } else if (s.kind === 'db') {
+      const ry = 12;
+      const { x, y, w, h } = s;
+      lines.push({ d: `M${x} ${y + ry} A${w / 2} ${ry} 0 0 1 ${x + w} ${y + ry} V${y + h - ry} A${w / 2} ${ry} 0 0 1 ${x} ${y + h - ry} Z`, cls: 'thick' });
+      lines.push({ d: `M${x} ${y + ry} A${w / 2} ${ry} 0 0 0 ${x + w} ${y + ry}`, cls: 'mid' });
+      const mid = y + ry + (h - ry) / 2;
+      t(x + w / 2, mid - 3 * fs, s.label, 'label');
+      if (s.sub) t(x + w / 2, mid + 15 * fs, s.sub, 'sub');
+    } else if (s.kind === 'hex') {
+      lines.push({ d: hex(s.cx, s.cy, s.r), cls: 'thick' });
+      lines.push({ d: hex(s.cx, s.cy, s.r - 10), cls: 'thin' });
+      const n = s.lines?.length ?? 0;
+      const top = s.cy - ((n * 18 + 22) * fs) / 2 + 14 * fs;
+      t(s.cx, top, s.label, 'label');
+      s.lines?.forEach((line, i) => t(s.cx, top + (26 + i * 18) * fs, line, 'sub'));
+    } else if (s.kind === 'port') {
+      lines.push({ d: rect(s.x - 6, s.y - 6, 12, 12), cls: 'mid port' });
+    }
+  }
+
+  for (const k of l.links) {
+    lines.push({ d: k.d, cls: `mid${k.dashed ? ' dash' : ''}${k.arrow ? ' arrow' : ''}` });
+    if (k.label) t(k.label.x, k.label.y, k.label.text, 'note', k.label.anchor ?? 'middle');
+  }
+  for (const c of l.clouds ?? []) {
+    lines.push({ d: cloud(c.x, c.y, c.w, c.h), cls: 'mid cloud' });
+    t(c.tag.x, c.tag.y, c.tag.text, 'tag', c.tag.anchor ?? 'middle');
+  }
+  return { lines, texts, fs };
+}
+
+const variants = (['wide', 'tall'] as const).map((v) => ({ v, l: drawing[v], ...build(drawing[v]) }));
+---
+<div class:list={['drawing', { bare }]}>
+  {variants.map(({ v, l, lines, texts, fs }) => (
+    <svg
+      class={`dwg dwg-${v}`}
+      viewBox={`0 0 ${l.w} ${l.h}`}
+      role={bare || v === 'tall' ? undefined : 'img'}
+      aria-hidden={bare || v === 'tall' ? 'true' : undefined}
+      aria-label={!bare && v === 'wide' ? title : undefined}
+      style={`--fs:${fs}`}
+    >
+      <defs>
+        <marker id={`${id}-${v}-arrow`} viewBox="0 0 10 10" refX="9.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+          <path d="M0 1.5 L10 5 L0 8.5 Z" class="arrowhead" />
+        </marker>
+      </defs>
+      {lines.map(({ d, cls }) => (
+        <path d={d} class={`ln ${cls}`} pathLength={cls.includes('dash') ? undefined : 1} marker-end={cls.includes('arrow') ? `url(#${id}-${v}-arrow)` : undefined} />
+      ))}
+      {!bare && texts.map(({ x, y, text, cls, anchor }) => (
+        <text x={x} y={y} class={`tx ${cls}`} text-anchor={anchor}>{text}</text>
+      ))}
+    </svg>
+  ))}
+</div>

@@ -1,0 +1,8 @@
+---
+interface Props { rev: string }
+const { rev } = Astro.props;
+---
+<svg class="delta" viewBox="0 0 22 20" aria-hidden="true">
+  <path d="M11 1.6 L20.6 18.4 H1.4 Z" />
+  <text x="11" y="15.6" text-anchor="middle">{rev}</text>
+</svg>

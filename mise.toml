@@ -1,5 +1,6 @@
 [tools]
 node = "26.12.0"
+opentofu = "1.13.9"
 
 # `mise install` sets up Node, then installs Astro and the other npm dependencies.
 [hooks]
@@ -26,3 +27,13 @@ run = "npx wrangler deploy"
 [tasks.clean]
 description = "Remove build output and Astro's cache"
 run = "rm -rf dist .astro"
+
+[tasks."infra:plan"]
+description = "Show what OpenTofu would change in Cloudflare (needs CLOUDFLARE_API_TOKEN and infra/terraform.tfvars)"
+dir = "infra"
+run = "tofu init -input=false >/dev/null && tofu plan"
+
+[tasks."infra:apply"]
+description = "Apply the Cloudflare zones, DNS records and redirects"
+dir = "infra"
+run = "tofu init -input=false >/dev/null && tofu apply"

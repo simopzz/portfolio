@@ -4,11 +4,9 @@ import type { Drawing, Layout, Shape } from '../drawings/types';
 interface Props {
   drawing: Drawing;
   id: string;
-  /** linework only, for the cover's key plan */
-  bare?: boolean;
-  title?: string;
+  title: string;
 }
-const { drawing, id, bare = false, title } = Astro.props;
+const { drawing, id, title } = Astro.props;
 
 const rect = (x: number, y: number, w: number, h: number) => `M${x} ${y} H${x + w} V${y + h} H${x} Z`;
 
@@ -18,30 +16,6 @@ function hex(cx: number, cy: number, r: number) {
     return `${(cx + r * Math.cos(t)).toFixed(1)} ${(cy + r * Math.sin(t)).toFixed(1)}`;
   });
   return `M${pts.join(' L')} Z`;
-}
-
-// Scalloped revision cloud, traced clockwise so every arc bulges outward.
-function cloud(x: number, y: number, w: number, h: number, step = 18) {
-  const nx = Math.max(2, Math.round(w / step));
-  const ny = Math.max(2, Math.round(h / step));
-  const sx = w / nx;
-  const sy = h / ny;
-  let d = `M${x} ${y}`;
-  let cx = x;
-  let cy = y;
-  const go = (dx: number, dy: number, n: number) => {
-    const r = (Math.hypot(dx, dy) * 0.62).toFixed(1);
-    for (let i = 0; i < n; i++) {
-      cx += dx;
-      cy += dy;
-      d += ` A${r} ${r} 0 0 1 ${cx.toFixed(1)} ${cy.toFixed(1)}`;
-    }
-  };
-  go(sx, 0, nx);
-  go(0, sy, ny);
-  go(-sx, 0, nx);
-  go(0, -sy, ny);
-  return d;
 }
 
 type Ln = { d: string; cls: string };
@@ -102,23 +76,18 @@ function build(l: Layout) {
     lines.push({ d: k.d, cls: `mid${k.dashed ? ' dash' : ''}${k.arrow ? ' arrow' : ''}` });
     if (k.label) t(k.label.x, k.label.y, k.label.text, 'note', k.label.anchor ?? 'middle');
   }
-  for (const c of l.clouds ?? []) {
-    lines.push({ d: cloud(c.x, c.y, c.w, c.h), cls: 'mid cloud' });
-    t(c.tag.x, c.tag.y, c.tag.text, 'tag', c.tag.anchor ?? 'middle');
-  }
   return { lines, texts, fs };
 }
 
 const variants = (['wide', 'tall'] as const).map((v) => ({ v, l: drawing[v], ...build(drawing[v]) }));
 ---
-<div class:list={['drawing', { bare }]}>
+<div class="drawing">
   {variants.map(({ v, l, lines, texts, fs }) => (
     <svg
       class={`dwg dwg-${v}`}
       viewBox={`0 0 ${l.w} ${l.h}`}
-      role={bare || v === 'tall' ? undefined : 'img'}
-      aria-hidden={bare || v === 'tall' ? 'true' : undefined}
-      aria-label={!bare && v === 'wide' ? title : undefined}
+      role="img"
+      aria-label={title}
       style={`--fs:${fs}`}
     >
       <defs>
@@ -129,7 +98,7 @@ const variants = (['wide', 'tall'] as const).map((v) => ({ v, l: drawing[v], ...
       {lines.map(({ d, cls }) => (
         <path d={d} class={`ln ${cls}`} pathLength={cls.includes('dash') ? undefined : 1} marker-end={cls.includes('arrow') ? `url(#${id}-${v}-arrow)` : undefined} />
       ))}
-      {!bare && texts.map(({ x, y, text, cls, anchor }) => (
+      {texts.map(({ x, y, text, cls, anchor }) => (
         <text x={x} y={y} class={`tx ${cls}`} text-anchor={anchor}>{text}</text>
       ))}
     </svg>

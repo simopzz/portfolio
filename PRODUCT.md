@@ -8,10 +8,7 @@ web
 
 ## Stack
 
-Currently Hugo (0.132.0) with the `hugo-scroll` theme as a git submodule, deployed to Netlify from `public/`. **None of it is a commitment:** the user is willing to replace the whole codebase, including with a non-static (server-rendered or edge) setup.
-
-- **Hosting:** strongly leaning toward moving to **Cloudflare**, where other work is already hosted (tegakko deploys to Cloudflare Pages via wrangler). The Netlify config (`netlify.toml`, `static/_redirects`) is disposable once the move happens. Any `.dev` → `.com` redirects then need re-creating on Cloudflare.
-- *Open: which stack. It is undecided, and a recommendation is welcome.*
+Astro, static output, served by Cloudflare as a Worker on the `simopzz.com` custom domain; a push to `main` builds and deploys through GitHub Actions. DNS and redirects are managed with OpenTofu in `infra/`. See README.md for day-to-day operations.
 
 ## Users
 
@@ -34,7 +31,7 @@ A senior backend engineer whose claims are backed by inspectable work. The proje
 ## Operating Context
 
 - Visitors often come from a LinkedIn profile, a GitHub profile, a CV link, or a direct referral. Many will be on mobile.
-- The canonical domain is `simopzz.com`. `simopzz.dev` and `www.simopzz.dev` 301-redirect to it (`static/_redirects`).
+- The canonical domain is `simopzz.com`. `www.simopzz.com` and `simopzz.dev` 301-redirect to it (Cloudflare redirect rules in `infra/`).
 
 ## Capabilities and Constraints
 
@@ -48,14 +45,14 @@ A senior backend engineer whose claims are backed by inspectable work. The proje
 
 - Name: **Simone Pedrazzi**; handle **simopzz**.
 - Professional line: **Senior Engineer — Python, Cloud, Distributed Architecture**.
-- Existing assets: a terminal glyph logo (`static/images/terminal-solid-full.svg`), favicons and touch icons in `static/`, and a woods-clearing header photo (`assets/images/woods-clearing.jpg`). These belong to the current implementation; none was declared binding.
+- Existing assets: an "SP" monogram favicon and touch icons in `public/`. They belong to the current implementation; none was declared binding.
 
 ## Evidence on Hand
 
 - About-me copy: `content/en/homepage/about-me.md`. It covers FastAPI, PostgreSQL, Docker, Kubernetes, AWS/GCP, microservices, DDD, CI/CD, AI integration, team leadership, and industry experience in AI-driven finance, biotech, and fashion.
 - **dandori** — <https://github.com/simopzz/dandori> (public; live at <https://dandori.simopzz.com>, invite-only sign-in by magic link). *Dandori* (段取り) is a meal-planning co-pilot for a few invited users, each cooking for themselves. It plans batch-cooked meals ("cook once, eat three times"), plans per grocery delivery, tracks the kitchen, adapts when the schedule changes, and fills an online supermarket cart without checking out. The agent proposes changes and the user approves them, with a live trace of each agent run. Stack: Go, templ, htmx, PostgreSQL + pgvector on Supabase, and Claude. It has a vision doc, a glossary and ADRs. This is v2, a new codebase, at the walking-skeleton stage with milestone M1 next. A banner image exists at `assets/banner.png` in the repo.
 - **tegakko** — <https://github.com/simopzz/tegakko> (**currently private**; the user will make it public, so do not link it until it is public). A Japanese kana handwriting-practice PWA: a prompt, writing on a pressure-sensitive canvas, then self-grading, with card selection biased toward weak spots. It is single-user and local-only with no accounts. Stack: TypeScript (strict), Svelte, Vite and IndexedDB (idb), structured as Ports & Adapters, deployed to Cloudflare Pages. A heavy refactor is planned.
-- Facts verified from the repositories on 2026-11-19 and used in the site's revision tables:
+- Facts verified from the repositories on 2026-11-19 (kept in each project's frontmatter as its revision record; the page does not currently show them):
   - dandori v1 ran on `main` from 2026-10-21 to 2026-11-03 (its last commit) and is frozen there. v2 started 2026-11-03 on the `v2` branch; its decision records are in `docs/adr`.
   - tegakko's first commit was 2026-09-01. Progress exports and imports as JSON (`src/adapters/io/`). The ports-and-adapters boundary is enforced by `eslint.config.js`.
 - Both projects are in Go/TypeScript rather than Python and are personal products, not distributed-systems work. The site should present them truthfully as what they are.

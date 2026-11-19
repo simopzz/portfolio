@@ -7,8 +7,11 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     kanji: z.string().optional(),
-    sheet: z.number(),
+    /** position on the page, lowest first */
+    order: z.number(),
     drawingTitle: z.string(),
+    /** the "built with" line, technologies separated by middle dots */
+    stack: z.string(),
     links: z.array(
       z.object({
         label: z.string(),

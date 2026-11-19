@@ -1,285 +1,336 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T09:26:53+00:00",
+  "generatedAt": "2026-11-19T20:43:25+00:00",
   "title": "Design System: simopzz.com",
   "extensions": {
     "colorMeta": {
-      "paper": {
-        "role": "neutral",
-        "displayName": "Bond Paper",
-        "canonical": "#f4f5f2",
+      "yellow": {
+        "role": "primary",
+        "displayName": "Highlighter Yellow",
+        "canonical": "oklch(91.7% 0.155 98.0)",
         "tonalRamp": [
-          "#2b2c2a",
-          "#454643",
-          "#62635f",
-          "#81827e",
-          "#a2a39f",
-          "#c4c5c1",
-          "#e2e3df",
-          "#f4f5f2"
+          "#110b00",
+          "#2f2600",
+          "#514500",
+          "#756613",
+          "#9c8929",
+          "#c4ae3e",
+          "#ebd152",
+          "#ffef6e"
+        ]
+      },
+      "teal": {
+        "role": "secondary",
+        "displayName": "Highlighter Teal",
+        "canonical": "oklch(84.2% 0.095 182.1)",
+        "tonalRamp": [
+          "#00100c",
+          "#032e28",
+          "#1b4f47",
+          "#347369",
+          "#4e998d",
+          "#69c0b2",
+          "#86e5d6",
+          "#acfff3"
+        ]
+      },
+      "pink": {
+        "role": "tertiary",
+        "displayName": "Highlighter Pink",
+        "canonical": "oklch(81.0% 0.127 351.0)",
+        "tonalRamp": [
+          "#1a020e",
+          "#3d172a",
+          "#64324a",
+          "#8e4f6d",
+          "#b96d91",
+          "#e78db7",
+          "#ffb0db",
+          "#ffd0f8"
+        ]
+      },
+      "pink-ink": {
+        "role": "tertiary",
+        "displayName": "Pink Ink",
+        "canonical": "oklch(54.5% 0.204 358.3)",
+        "tonalRamp": [
+          "#2c000b",
+          "#570026",
+          "#850044",
+          "#b51465",
+          "#dd4b88",
+          "#ff7cad",
+          "#ffa7d0",
+          "#ffcaee"
         ]
       },
       "ink": {
         "role": "neutral",
-        "displayName": "Graphite",
-        "canonical": "#1d1f22",
+        "displayName": "Marker Black",
+        "canonical": "oklch(23.2% 0.004 286.1)",
         "tonalRamp": [
-          "#1d1f22",
-          "#33363a",
-          "#4b4f54",
-          "#656a70",
-          "#81868c",
-          "#a0a4a9",
-          "#c2c5c8",
-          "#e3e4e6"
+          "#0b0b0d",
+          "#262628",
+          "#454547",
+          "#666668",
+          "#89898b",
+          "#adadb0",
+          "#d1d1d3",
+          "#eeeef1"
         ]
       },
-      "ink-2": {
+      "ink-soft": {
         "role": "neutral",
-        "displayName": "Soft Graphite",
-        "canonical": "#4b5057",
+        "displayName": "Soft Ink",
+        "canonical": "oklch(41.9% 0.010 286.0)",
         "tonalRamp": [
-          "#1f2225",
-          "#33373c",
-          "#4b5057",
-          "#646a72",
-          "#80868e",
-          "#9ea3aa",
-          "#c0c3c8",
-          "#e2e4e6"
+          "#0b0b0f",
+          "#26262b",
+          "#44444a",
+          "#65656c",
+          "#88888f",
+          "#adadb4",
+          "#d0d0d7",
+          "#eeeef5"
         ]
       },
-      "ink-3": {
+      "paper": {
         "role": "neutral",
-        "displayName": "Construction Line",
-        "canonical": "#9aa0a7",
+        "displayName": "Paper",
+        "canonical": "oklch(99.4% 0.001 106.4)",
         "tonalRamp": [
-          "#2a2d31",
-          "#41454a",
-          "#5b6066",
-          "#777c83",
-          "#9aa0a7",
-          "#b4b8bd",
-          "#cfd2d5",
-          "#eaebed"
+          "#0b0b0b",
+          "#262626",
+          "#454544",
+          "#666665",
+          "#898988",
+          "#aeaead",
+          "#d1d1d0",
+          "#eeeeed"
         ]
       },
-      "red": {
-        "role": "primary",
-        "displayName": "Redline",
-        "canonical": "#c22a16",
+      "grid": {
+        "role": "neutral",
+        "displayName": "Graph Grid",
+        "canonical": "oklch(94.0% 0.016 253.9)",
         "tonalRamp": [
-          "#3d0f08",
-          "#62180d",
-          "#8d2112",
-          "#c22a16",
-          "#d9533f",
-          "#e8836f",
-          "#f3b4a6",
-          "#fbe1da"
+          "#0a0b0d",
+          "#24272a",
+          "#424549",
+          "#62666c",
+          "#848a90",
+          "#a8afb6",
+          "#cad2db",
+          "#e7eff9"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The name, once, as the cover drawing title."
+        "purpose": "The name in the first viewport, on a yellow swipe, rotated -1.5deg."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Sheet titles, with a double underline rule."
+        "purpose": "Project titles on alternating highlighter swipes, rotated -1deg."
+      },
+      "headline-section": {
+        "displayName": "Section Headline",
+        "purpose": "Section headings."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Drawing-list titles, view names, the role line."
+        "purpose": "The role line; synthesised 600 on a one-weight face."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Notes and project prose, 46-62ch."
+        "purpose": "All reading text; prose capped at 46ch."
+      },
+      "body-lead": {
+        "displayName": "Lead",
+        "purpose": "The hook under the role line, capped at 40ch."
       },
       "label": {
-        "displayName": "Label",
-        "purpose": "Block headings, scale notes, captions, the copy button."
+        "displayName": "Aside",
+        "purpose": "Handwritten margin notes in Soft Ink, rotated -3deg."
       },
-      "label-sm": {
-        "displayName": "Label small",
-        "purpose": "Title-block keys, table column heads, zone numerals."
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Figure captions, \"fig. ...\" in lower case, Soft Ink."
       },
-      "kanji": {
-        "displayName": "Kanji",
-        "purpose": "Three-glyph subset beside the dandori sheet title only."
+      "action": {
+        "displayName": "Action",
+        "purpose": "The email address inside the box."
       }
     },
-    "lineWeights": [
-      {
-        "name": "w-thick",
-        "value": "2px",
-        "purpose": "Pen border, title-block top/left, primary shapes, heading rules."
-      },
-      {
-        "name": "w-mid",
-        "value": "1.25px",
-        "purpose": "Externals, links and arrows, legend and revision boxes, copy button, delta and cloud strokes."
-      },
-      {
-        "name": "w-thin",
-        "value": "0.75px",
-        "purpose": "Frame, zone ticks, table rows, underlines, thin drawing strokes in ink-2."
-      }
-    ],
-    "shadows": [
-      {
-        "name": "double-rule",
-        "value": "0 4px 0 -3px var(--ink)",
-        "purpose": "Not depth: a 1px line under a heading's border to draw a double underline (0 6px 0 -5px on the cover title, 0 3px 0 -2px on view names)."
-      }
-    ],
+    "shadows": [],
     "motion": [
       {
-        "name": "ease-out",
-        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Hover colour (160ms), lettering wipe, fades."
-      },
-      {
-        "name": "ease-plot",
+        "name": "ease-draw",
         "value": "cubic-bezier(0.65, 0, 0.35, 1)",
-        "purpose": "Pen border and linework plotting."
+        "purpose": "Shared easing for the highlighter swipe and the sketch draw-on."
       },
       {
-        "name": "pen-border",
-        "value": "520ms horizontal / 420ms vertical, clockwise, sequential",
-        "purpose": "Cover border drawn by the pen on load."
+        "name": "swipe",
+        "value": "0.7s",
+        "purpose": "Highlighter swipe-in behind a heading, once, when 30% in view."
       },
       {
-        "name": "lettering-wipe",
-        "value": "900ms clip-path left to right, lines staggered 270ms",
-        "purpose": "Cover title lettered in, then its double rule."
+        "name": "draw-on",
+        "value": "1.6s",
+        "purpose": "Solid diagram lines draw themselves, once, when the sketch is 30% in view."
       },
       {
-        "name": "linework-plot",
-        "value": "1600ms stroke-dashoffset on pathLength 1",
-        "purpose": "Key plan on load; project drawings once on first scroll into view (20% visible); dashes, arrowheads, lettering fade after."
+        "name": "label-fade",
+        "value": "0.6s, delay 1.2s",
+        "purpose": "Diagram labels and dashed lines fade in after the draw-on."
+      },
+      {
+        "name": "link-fill",
+        "value": "0.2s ease-out",
+        "purpose": "Link highlighter grows to fill the word on hover."
+      },
+      {
+        "name": "button-tilt",
+        "value": "0.15s",
+        "purpose": "Copy button tilt and scale on hover and press."
       },
       {
         "name": "reduced-motion",
-        "value": "none",
-        "purpose": "Under prefers-reduced-motion every sheet is already drawn."
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "No arming: every swipe and sketch renders already complete."
       }
     ],
     "breakpoints": [
       {
-        "name": "portrait-sheet",
-        "value": "max-width: 1199px"
+        "name": "tablet",
+        "value": "900px"
       },
       {
-        "name": "tall-drawing",
-        "value": "max-width: 599px"
+        "name": "phone",
+        "value": "600px"
       }
-    ]
+    ],
+    "filters": [
+      {
+        "name": "rough",
+        "value": "feTurbulence fractalNoise baseFrequency 0.025 numOctaves 2 seed 4; feDisplacementMap scale 4",
+        "purpose": "Diagram linework."
+      },
+      {
+        "name": "rough-sm",
+        "value": "feTurbulence fractalNoise baseFrequency 0.05 numOctaves 1 seed 9; feDisplacementMap scale 2.2",
+        "purpose": "Boxes, panels, arrows, checklist ticks."
+      }
+    ],
+    "ground": {
+      "value": "linear-gradient(#e4ecf6 1px, transparent 1px) 0 0 / 100% 26px, linear-gradient(90deg, #e4ecf6 1px, transparent 1px) 0 0 / 26px 100% #fdfdfc",
+      "purpose": "Graph paper on html, every page."
+    }
   },
   "components": [
     {
       "name": "Copy Button",
       "kind": "button",
-      "refersTo": "copy-button",
-      "description": "The only button: copies the email beside the title-block link.",
-      "html": "<button class=\"ds-copy\" type=\"button\">Copy</button>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-copy{min-height:32px;padding:4px 12px;font-family:var(--font,'Osifont','Arial Narrow',sans-serif);font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink,#1d1f22);background:transparent;border:var(--w-mid,1.25px) solid var(--ink,#1d1f22);border-radius:0;cursor:pointer;transition:color 160ms cubic-bezier(0.16,1,0.3,1),border-color 160ms cubic-bezier(0.16,1,0.3,1)}.ds-copy:hover{color:var(--red,#c22a16);border-color:var(--red,#c22a16)}.ds-copy:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}.ds-copy:active{transform:translateY(1px)}"
+      "refersTo": "button-copy",
+      "description": "Teal hand-drawn pill that copies the email; turns yellow and reads \"copied!\" on success.",
+      "html": "<button class=\"ds-copy\" type=\"button\">copy</button> <button class=\"ds-copy ds-copy-done\" type=\"button\">copied!</button>",
+      "css": ".ds-copy{font-family:'Caveat Brush','Shantell Sans',cursive;font-size-adjust:0.5;font-weight:650;font-size:1.4rem;min-width:5.2em;text-align:center;cursor:pointer;padding:0.3em 0.9em;color:var(--ink,#1d1d1f);background:var(--teal,#7fe0d0);border:2.5px solid var(--ink,#1d1d1f);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;transition:transform 0.15s}.ds-copy:hover{transform:rotate(-3deg) scale(1.04)}.ds-copy:active{transform:rotate(-3deg) scale(0.98)}.ds-copy:focus-visible{outline:3px dashed var(--ink,#1d1d1f);outline-offset:4px}.ds-copy-done{background:var(--yellow,#ffe45c)}"
     },
     {
-      "name": "Sheet Index",
+      "name": "Email Box",
+      "kind": "custom",
+      "refersTo": "mailbox",
+      "description": "The one action: the email in a wobbly hand-drawn box with the copy button. Never styled as a link.",
+      "html": "<svg width=\"0\" height=\"0\" style=\"position:absolute\"><filter id=\"ds-rough-sm\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"1\" seed=\"9\"/><feDisplacementMap in=\"SourceGraphic\" scale=\"2.2\"/></filter></svg><div class=\"ds-mailbox\"><svg class=\"ds-box-line\" viewBox=\"0 0 400 80\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M6 8 L394 4 L397 74 L4 77 Z\"/></svg><a class=\"ds-mail\" href=\"mailto:hello@example.com\">hello@example.com</a><button class=\"ds-copy\" type=\"button\">copy</button></div>",
+      "css": ".ds-mailbox{position:relative;isolation:isolate;display:inline-flex;flex-wrap:wrap;align-items:center;gap:0.75rem 1rem;padding:1rem 1.4rem}.ds-box-line{position:absolute;inset:0;z-index:-1;width:100%;height:100%;overflow:visible;fill:var(--paper,#fdfdfc);stroke:var(--ink,#1d1d1f);stroke-width:3;filter:url(#ds-rough-sm)}.ds-mail{font-family:'Shantell Sans','Comic Neue',sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink,#1d1d1f);text-decoration:none}.ds-mail:hover{text-decoration:underline 2px;text-underline-offset:0.2em}.ds-mail:focus-visible{outline:3px dashed var(--ink,#1d1d1f);outline-offset:4px}.ds-copy{font-family:'Caveat Brush','Shantell Sans',cursive;font-size-adjust:0.5;font-weight:650;font-size:1.3rem;min-width:5.2em;cursor:pointer;padding:0.3em 0.9em;color:var(--ink,#1d1d1f);background:var(--teal,#7fe0d0);border:2.5px solid var(--ink,#1d1d1f);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;transition:transform 0.15s}.ds-copy:hover{transform:rotate(-3deg) scale(1.04)}"
+    },
+    {
+      "name": "Highlighter Link",
       "kind": "nav",
-      "refersTo": "sheet-index-tab",
-      "description": "Fixed binder-tab strip of sheet numbers; the sheet in view is red.",
-      "html": "<nav class=\"ds-idx\"><a href=\"#\" aria-current=\"location\">01</a><a href=\"#\">02</a><a href=\"#\">03</a><a href=\"#\">04</a></nav>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-idx{display:flex;justify-content:flex-end;background:var(--paper,#f4f5f2);border-bottom:0.75px solid var(--ink,#1d1f22);font-family:var(--font,'Osifont',sans-serif)}.ds-idx a{position:relative;display:grid;place-items:center;min-width:40px;min-height:30px;padding:0 8px;font-size:0.75rem;letter-spacing:0.08em;color:var(--ink-2,#4b5057);text-decoration:none;border-left:0.75px solid var(--ink,#1d1f22)}.ds-idx a:last-child{border-right:0.75px solid var(--ink,#1d1f22)}.ds-idx a:hover,.ds-idx a[aria-current]{color:var(--red,#c22a16)}.ds-idx a[aria-current]::after{content:'';position:absolute;left:8px;right:8px;bottom:4px;height:2px;background:var(--red,#c22a16)}.ds-idx a:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
+      "refersTo": "link",
+      "description": "Yellow means link: a highlighter stroke under the words that fills them on hover.",
+      "html": "<p class=\"ds-p\"><a class=\"ds-link\" href=\"#\">GitHub</a> · <a class=\"ds-link\" href=\"#\">LinkedIn</a></p>",
+      "css": ".ds-p{font-family:'Shantell Sans','Comic Neue',sans-serif;font-weight:600;color:var(--ink,#1d1d1f)}.ds-link{color:inherit;text-decoration:none;background:linear-gradient(100deg,transparent 0.15em,var(--yellow,#ffe45c) 0.3em,var(--yellow,#ffe45c) calc(100% - 0.2em),transparent) no-repeat 0 92%/100% 0.42em;transition:background-size 0.2s ease-out}.ds-link:hover{background-size:100% 100%}.ds-link:focus-visible{outline:3px dashed var(--ink,#1d1d1f);outline-offset:4px}"
     },
     {
-      "name": "Drawing List",
-      "kind": "nav",
-      "refersTo": "drawing-list-row",
-      "description": "Cover schedule of sheets that doubles as the page navigation.",
-      "html": "<div class=\"ds-dl\"><div class=\"ds-dl-h\"><span>Sheet</span><span>Title</span><span>Rev</span></div><a href=\"#\"><span class=\"n\">01</span><span class=\"t\">Cover</span><span class=\"n r\">A</span></a><a href=\"#\"><span class=\"n\">03</span><span class=\"t\">Dandori</span><span class=\"n r\">B</span></a></div>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-dl{font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);min-width:280px}.ds-dl-h,.ds-dl a{display:grid;grid-template-columns:4.5rem 1fr 3rem;align-items:center}.ds-dl-h{padding:6px 0;font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057);border-top:2px solid var(--ink,#1d1f22);border-bottom:1.25px solid var(--ink,#1d1f22)}.ds-dl a{min-height:46px;text-decoration:none;color:inherit;border-bottom:0.75px solid var(--ink,#1d1f22)}.ds-dl .t{font-size:1.125rem;text-transform:uppercase;letter-spacing:0.06em}.ds-dl .n{color:var(--ink-2,#4b5057)}.ds-dl .r,.ds-dl-h span:last-child{text-align:right}.ds-dl a:hover .t,.ds-dl a:hover .n{color:var(--red,#c22a16)}.ds-dl a:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
+      "name": "Highlighter Heading",
+      "kind": "custom",
+      "refersTo": "headline-section",
+      "description": "Caveat Brush heading on a flat highlighter swipe (yellow, teal or pink).",
+      "html": "<h2 class=\"ds-h\"><span class=\"ds-hl\" style=\"--hl:#7fe0d0\">Things to know</span></h2>",
+      "css": ".ds-h{font-family:'Caveat Brush','Shantell Sans',cursive;font-size-adjust:0.5;font-weight:400;font-size:3rem;line-height:1.05;margin:0;color:var(--ink,#1d1d1f)}.ds-hl{background:linear-gradient(100deg,transparent 0.4em,var(--hl) 0.5em,var(--hl) calc(100% - 0.4em),transparent calc(100% - 0.25em)) no-repeat 0 62%/100% 58%;padding:0 0.15em;margin:0 -0.15em;box-decoration-break:clone;-webkit-box-decoration-break:clone}"
     },
     {
-      "name": "Title Block",
+      "name": "Checklist Item",
+      "kind": "custom",
+      "refersTo": "body",
+      "description": "A fact preceded by a hand-drawn box with a pink-ink tick.",
+      "html": "<ul class=\"ds-list\"><li><svg class=\"ds-tick\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path class=\"bx\" d=\"M3 4 L21 3 L20.5 21 L3.5 20.5 Z\"/><path class=\"ck\" d=\"M7 12 L11 16 L19 5\"/></svg>Fluent in Italian and English.</li></ul>",
+      "css": ".ds-list{list-style:none;margin:0;padding:0;font-family:'Shantell Sans','Comic Neue',sans-serif;font-size:1.08rem;line-height:1.6;color:var(--ink,#1d1d1f)}.ds-list li{position:relative;padding:0.4rem 0 0.4rem 2.4rem}.ds-tick{position:absolute;left:0;top:0.55rem;width:1.5rem;height:1.5rem;fill:none;stroke-linecap:round;stroke-linejoin:round}.ds-tick .bx{stroke:var(--ink,#1d1d1f);stroke-width:2}.ds-tick .ck{stroke:var(--pink-ink,#c4206f);stroke-width:3}"
+    },
+    {
+      "name": "Sketch Panel",
       "kind": "card",
-      "refersTo": "title-block-cell",
-      "description": "Ruled identity block at each sheet's bottom right, carrying the email action.",
-      "html": "<div class=\"ds-tb\"><div class=\"c w\"><span class=\"k\">Drawn by</span><span class=\"v up\">Simone Pedrazzi</span></div><div class=\"c\"><span class=\"k\">Sheet</span><span class=\"v\">03 / 04</span></div><div class=\"c s\"><span class=\"k\">Contact</span><span class=\"v\"><a class=\"m\" href=\"#\">name@example.com</a></span></div><div class=\"c w l\"><span class=\"k\">Rev</span><span class=\"v\"><svg width=\"22\" height=\"20\" viewBox=\"0 0 22 20\"><path d=\"M11 1.6 L20.6 18.4 H1.4 Z\" fill=\"none\" stroke=\"#c22a16\" stroke-width=\"1.25\" stroke-linejoin=\"round\"/><text x=\"11\" y=\"15.6\" text-anchor=\"middle\" font-size=\"11\" fill=\"#c22a16\">B</text></svg> 2026-11-03</span></div><div class=\"c l\"><span class=\"k\">Scale</span><span class=\"v\">NTS</span></div></div>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-tb{display:grid;grid-template-columns:2fr 1fr;max-width:440px;font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);background:var(--paper,#f4f5f2);border-top:2px solid var(--ink,#1d1f22);border-left:2px solid var(--ink,#1d1f22)}.ds-tb .c{display:flex;flex-direction:column;gap:2px;padding:8px 12px 9px;border-bottom:0.75px solid var(--ink,#1d1f22)}.ds-tb .w{border-right:0.75px solid var(--ink,#1d1f22)}.ds-tb .s{grid-column:1/-1}.ds-tb .l{border-bottom:0}.ds-tb .k{font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057)}.ds-tb .v{font-size:1rem;line-height:1.3;display:flex;align-items:center;gap:8px}.ds-tb .up{text-transform:uppercase;letter-spacing:0.06em}.ds-tb .m{font-size:1.25rem;color:var(--red,#c22a16);text-decoration-thickness:1.25px;text-underline-offset:0.24em}.ds-tb .m:hover{color:var(--ink,#1d1f22)}.ds-tb .m:focus-visible{outline:2px solid var(--red,#c22a16);outline-offset:3px}"
-    },
-    {
-      "name": "Revision Table",
-      "kind": "custom",
-      "refersTo": "revision-row",
-      "description": "Boxed Rev / Date / Description table with delta markers and a red pending row.",
-      "html": "<div class=\"ds-rv\"><div class=\"r h\"><span>Rev</span><span>Date</span><span>Description</span></div><div class=\"r\"><span><svg width=\"22\" height=\"20\" viewBox=\"0 0 22 20\"><path d=\"M11 1.6 L20.6 18.4 H1.4 Z\" fill=\"none\" stroke=\"#c22a16\" stroke-width=\"1.25\" stroke-linejoin=\"round\"/><text x=\"11\" y=\"15.6\" text-anchor=\"middle\" font-size=\"11\" fill=\"#c22a16\">A</text></svg></span><span class=\"d\">2026-10-21</span><span>First release.</span></div><div class=\"r p\"><span><i class=\"cl\"></i></span><span class=\"d\">Next</span><span>Pending milestone.</span></div></div>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-rv{max-width:420px;font-family:var(--font,'Osifont',sans-serif);font-size:0.9375rem;color:var(--ink,#1d1f22);border:1.25px solid var(--ink,#1d1f22)}.ds-rv .r{display:grid;grid-template-columns:52px 7.2em 1fr;align-items:center}.ds-rv .r+.r{border-top:0.75px solid var(--ink,#1d1f22)}.ds-rv .r>span{padding:7px 10px}.ds-rv .r>span+span{border-left:0.75px solid var(--ink,#1d1f22)}.ds-rv .r>span:first-child{display:flex;justify-content:center}.ds-rv .h{font-size:0.6875rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057);border-bottom:1.25px solid var(--ink,#1d1f22)}.ds-rv .d{color:var(--ink-2,#4b5057)}.ds-rv .p,.ds-rv .p .d{color:var(--red,#c22a16)}.ds-rv .p .d{text-transform:uppercase;letter-spacing:0.1em;font-size:0.75rem}.ds-rv .cl{--arc:transparent 4.6px,var(--red,#c22a16) 5px 6.2px,transparent 6.6px;display:inline-block;width:36px;height:22px;background:radial-gradient(circle at 50% 100%,var(--arc)) top left/12px 7px repeat-x,radial-gradient(circle at 50% 0,var(--arc)) bottom left/12px 7px repeat-x,radial-gradient(circle at 100% 50%,var(--arc)) top left/7px 11px repeat-y,radial-gradient(circle at 0 50%,var(--arc)) top right/7px 11px repeat-y}"
-    },
-    {
-      "name": "Drawing Legend",
-      "kind": "custom",
-      "refersTo": "legend",
-      "description": "Symbol key for the drawing grammar: box, external, data store, domain core, flow.",
-      "html": "<div class=\"ds-lg\"><span class=\"h\">Legend</span><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M3 3 H53 V27 H3 Z\"/></svg><span>Service or process</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"m d\" d=\"M3 3 H53 V27 H3 Z\"/></svg><span>External service</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M6 7 A22 4.5 0 0 1 50 7 V23 A22 4.5 0 0 1 6 23 Z\"/><path class=\"m\" d=\"M6 7 A22 4.5 0 0 0 50 7\"/></svg><span>Data store</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"t\" d=\"M28 2 L41 9.5 V20.5 L28 28 L15 20.5 V9.5 Z\"/></svg><span>Domain core</span></div><div><svg viewBox=\"0 0 56 30\"><path class=\"m\" d=\"M4 15 H44\"/><path fill=\"#1d1f22\" d=\"M42 10.5 L52 15 L42 19.5 Z\"/></svg><span>Call or data flow</span></div></div>",
-      "css": ":root{--paper:#f4f5f2;--ink:#1d1f22;--ink-2:#4b5057;--ink-3:#9aa0a7;--red:#c22a16;--w-thick:2px;--w-mid:1.25px;--w-thin:0.75px;--font:'Osifont','Arial Narrow',sans-serif}.ds-lg{max-width:300px;padding:14px 16px 6px;font-family:var(--font,'Osifont',sans-serif);color:var(--ink,#1d1f22);border:1.25px solid var(--ink,#1d1f22)}.ds-lg .h{display:block;margin-bottom:8px;font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-2,#4b5057)}.ds-lg div{display:grid;grid-template-columns:64px 1fr;align-items:center;min-height:40px;border-top:0.75px solid var(--ink-3,#9aa0a7)}.ds-lg svg{width:56px;height:30px}.ds-lg path{fill:none;stroke:var(--ink,#1d1f22);stroke-linejoin:round;stroke-linecap:round}.ds-lg .t{stroke-width:2px}.ds-lg .m{stroke-width:1.25px}.ds-lg .d{stroke-dasharray:7 5;stroke-linecap:butt}.ds-lg div span{font-size:0.875rem;text-transform:uppercase;letter-spacing:0.08em}"
+      "refersTo": "panel",
+      "description": "Figure holding a marker diagram: uneven 3px hand outline, paper fill, \"fig.\" caption.",
+      "html": "<figure class=\"ds-panel\"><svg viewBox=\"0 0 200 90\" width=\"100%\"><path class=\"ds-ln\" d=\"M20 15 H120 V60 H20 Z\"/><path class=\"ds-ln ds-dash\" d=\"M140 20 H190 V75 H140 Z\"/><text x=\"70\" y=\"42\" class=\"ds-tx\">INVITED USER</text></svg><figcaption class=\"ds-cap\">fig. system arrangement</figcaption></figure>",
+      "css": ".ds-panel{position:relative;margin:0;padding:20px;background:var(--paper,#fdfdfc);max-width:22rem}.ds-panel::before{content:'';position:absolute;inset:0;border:3px solid var(--ink,#1d1d1f);border-radius:6px 14px 8px 18px;pointer-events:none}.ds-ln{fill:none;stroke:var(--ink,#1d1d1f);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}.ds-dash{stroke-width:2.2;stroke-dasharray:9 7}.ds-tx{font-family:'Caveat Brush','Shantell Sans',cursive;font-size-adjust:0.5;font-weight:700;font-size:13px;fill:var(--ink,#1d1d1f);text-anchor:middle}.ds-cap{font-family:'Caveat Brush','Shantell Sans',cursive;font-size-adjust:0.5;margin:0.75rem 0 0;font-size:0.95rem;color:var(--ink-soft,#4c4c52)}"
     }
   ],
   "narrative": {
-    "northStar": "The Issued Drawing Set",
-    "overview": "**Creative North Star: \"The Issued Drawing Set\"**\n\nThe site is a set of engineering sheets, not a web page with sections. Every screen is a sheet: a hairline frame with a lettered and numbered zone grid, a heavy pen border drawn inside it, a ruled title block at the bottom right, and a sheet number out of the set total. Work is shown as architecture drawings in a fixed linework grammar, and each project carries an honest revision table. Content sits in the conventions of the drawing office, and the conventions do the persuading.\n\nThe material is white bond paper and graphite. Everything is ink at three line weights; depth, hierarchy and grouping come from stroke weight and rules, never from fills, tints or shadows. Red is a redline in the drafting sense: it marks revision state (clouds, delta triangles, pending rows) and the one action (the email). Type is ISO 3098 technical lettering throughout, mostly uppercase and tracked, with tabular figures.\n\nDensity is that of a real sheet: generous empty field around a drawing, tight ruled tables in the blocks. Motion is a plotter: the border is pen-drawn, the title is lettered in, linework plots once, and with reduced motion everything is already drawn.",
+    "northStar": "The Marker Zine",
+    "overview": "One engineer explaining their systems the way they would sketch them for a colleague: white paper with a faint blue graph grid, black marker ink, and three flat highlighters. Everything that carries a voice (headings, asides, captions, drawing labels, the copy button) is hand-lettered in Caveat Brush; everything meant to be read at length is set in Shantell Sans, a handwriting face that stays legible in paragraphs. Linework is drawn as SVG and roughened by a displacement filter, so boxes, arrows, ticks and diagrams all wobble the same way.\n\nThe page is left-aligned and unhurried. There are no cards, no shadows, no gradients other than highlighter strokes, and no colour fills apart from the three highlighters and the paper. Depth comes from ink sitting on paper and nothing else. Headings tilt slightly, as if written by hand, and highlighter swipes sit behind them.\n\nThe system refuses the polished hero-plus-cards portfolio and the costume of a technical artifact (title blocks, zone grids, sheet numbering, a dark terminal). It is a hand-drawn page, not a mock blueprint.",
     "keyCharacteristics": [
-      "Every screen is a framed, zoned, numbered sheet with a title block.",
-      "One typeface (Osifont), uppercase and tracked for anything that is a label.",
-      "Three line weights carry all hierarchy; zero radius, zero fills, zero shadows.",
-      "Red only for revision state and the email action.",
-      "Drawings are inline SVG in a small fixed symbol vocabulary, explained by a legend."
+      "Graph-paper ground: a 26px blue grid on near-white paper, across the whole page.",
+      "Two hand faces: Caveat Brush for lettering, Shantell Sans for reading.",
+      "Three flat highlighters (yellow, pink, teal), each with one job.",
+      "Hand-wobbled SVG linework through two shared displacement filters.",
+      "Slight rotations on headings, asides and hovered buttons; never on reading text.",
+      "Motion is a one-time reveal (highlighters swipe in, sketches draw themselves) and is skipped entirely under reduced motion."
     ],
     "rules": [
       {
-        "name": "The Redline Rule",
-        "body": "Red marks what changed, what is pending, or what to press. It never decorates, never fills an area, and never colours a heading.",
+        "name": "The Yellow Means Link Rule",
+        "body": "A yellow underline stroke marks a link and only a link. The email is the action, and it is boxed, never yellow-underlined: anything wrapped in the hand-drawn box with a copy button is the thing to do; anything underlined in yellow is somewhere to go.",
         "section": "colors"
       },
       {
-        "name": "The Construction Line Rule",
-        "body": "`ink-3` is for strokes alone. Any lettering, however minor, is `ink-2` or darker.",
+        "name": "The Flat Highlighter Rule",
+        "body": "Highlighters are flat, single-colour strokes with soft feathered ends. No gradients between hues, no transparency stacks, no glow.",
         "section": "colors"
       },
       {
-        "name": "The One Hand Rule",
-        "body": "Osifont sets every glyph on the page. No second Latin face, no bold, no italic.",
+        "name": "The Heavy Brush Rule",
+        "body": "Caveat Brush ships one weight. The role line (600), the copy button (650) and drawing labels (700) are deliberately set heavier, so the browser synthesises the bold; this is the look Simone approved in the prototype. Keep it on those three, and do not add a second Caveat Brush file to \"fix\" it.",
         "section": "typography"
       },
       {
-        "name": "The Lettered Label Rule",
-        "body": "Anything that names a field, column, block or scale is uppercase and tracked 0.08–0.14em. Prose is sentence case.",
+        "name": "The Two Hands Rule",
+        "body": "Caveat Brush speaks, Shantell Sans explains. A paragraph is never set in Caveat Brush, and a heading is never set in Shantell Sans.",
         "section": "typography"
       },
       {
-        "name": "The Line Weight Rule",
-        "body": "Hierarchy is stroke weight. If something needs to stand forward, give it a heavier line, not a fill or shadow.",
+        "name": "The Ink-Only Depth Rule",
+        "body": "If something needs to stand out, outline it in marker or put a highlighter behind it. Never lift it with a shadow.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** put every new screen on a sheet: frame, zone grid, pen border, title block with sheet `NN / NN` and a revision.",
-      "**Do** express hierarchy with the three line weights (2px, 1.25px, 0.75px) and with case and tracking, at weight 400.",
-      "**Do** reserve red for revision state (clouds, deltas, pending rows) and the email action.",
-      "**Do** draw new systems with the legend's symbols only, and give each drawing a tall layout for under 600px.",
-      "**Do** keep `ink-3` (2.4:1) for lines; set the smallest lettering in `ink-2`.",
-      "**Do** caption views \"Scale NTS\" and leave the drawing undimensioned.",
-      "**Do** keep every animation optional: under reduced motion the sheet is already drawn."
+      "**Do** underline every link with the yellow highlighter stroke, and let nothing else mark a link.",
+      "**Do** box the email with a copy button wherever it appears, and keep it out of the link style.",
+      "**Do** run all hand-drawn linework through #rough (diagrams) or #rough-sm (boxes, arrows, ticks).",
+      "**Do** use Caveat Brush for headings, asides, captions, buttons and drawing labels, and Shantell Sans for reading text.",
+      "**Do** give every reveal a reduced-motion path where everything is already drawn and swiped.",
+      "**Do** keep the 26px graph grid as the ground of every page, including the 404."
     ],
     "donts": [
-      "**Don't** use a blue cyanotype ground, cream paper, or a dark theme: the world is graphite on white bond.",
-      "**Don't** introduce a second colour, a tint, a filled area of red, or a gradient other than the cloud scallops.",
-      "**Don't** round corners or add drop shadows; the offset 1px rule under headings is the only shadow, and it draws a line.",
-      "**Don't** add a second typeface, bold, or italic.",
-      "**Don't** invent dimensions, metrics, skill bars or logo walls in the drawings or blocks.",
-      "**Don't** replace the title block or drawing list with cards, a hero, or a top nav bar."
+      "**Don't** add box-shadows, raised cards or glass; depth is ink on paper.",
+      "**Don't** use a yellow underline on the email or on anything that is not a link.",
+      "**Don't** blend highlighters into gradients or put two on the same mark.",
+      "**Don't** set reading text in Caveat Brush, or rotate paragraphs.",
+      "**Don't** return to engineering-drawing props: title blocks, zone grids, sheet numbers, a dark terminal theme.",
+      "**Don't** add mascots or illustrated characters; the drawings are system diagrams."
     ]
   }
 }

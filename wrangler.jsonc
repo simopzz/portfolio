@@ -4,5 +4,11 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
-  }
+  },
+  // The site lives only on its own domain: no duplicate on workers.dev or preview URLs.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Custom domain: wrangler creates and owns the simopzz.com DNS record.
+  // DNS, www and the simopzz.dev redirects live in infra/ (OpenTofu).
+  "routes": [{ "pattern": "simopzz.com", "custom_domain": true }]
 }

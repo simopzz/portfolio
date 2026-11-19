@@ -28,7 +28,7 @@ const person = {
     <meta name="description" content={description} />
     <meta name="keywords" content={site.keywords} />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
-    <meta name="theme-color" content="#f4f5f2" />
+    <meta name="theme-color" content="#fdfdfc" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.title} />
     <meta property="og:title" content={title} />
@@ -39,7 +39,8 @@ const person = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preload" href="/fonts/osifont.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/shantell-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/caveat-brush.woff2" as="font" type="font/woff2" crossorigin />
     {!noindex && <script type="application/ld+json" set:html={JSON.stringify(person)} />}
   </head>
   <body>

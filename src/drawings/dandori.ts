@@ -27,7 +27,6 @@ export const dandori: Drawing = {
       { d: 'M600 337 H670 V373 H710', arrow: true, label: { x: 635, y: 327, text: 'SIGN-IN' } },
       { d: 'M600 410 H618 V477 H710', arrow: true, label: { x: 626, y: 467, text: 'CART FILL', anchor: 'start' } },
     ],
-    clouds: [{ x: 252, y: 238, w: 356, h: 74, tag: { x: 590, y: 281, text: 'M1', anchor: 'end' } }],
   },
   tall: {
     w: 360,
@@ -49,6 +48,5 @@ export const dandori: Drawing = {
       { d: 'M14 655 H60', arrow: true },
       { d: 'M14 727 H60', arrow: true },
     ],
-    clouds: [{ x: 26, y: 241, w: 334, h: 69, tag: { x: 342, y: 281, text: 'M1', anchor: 'end' } }],
   },
 };

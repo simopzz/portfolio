@@ -1,7 +1,8 @@
 ---
 title: tegakko
-sheet: 4
+order: 2
 drawingTitle: Ports and adapters
+stack: TypeScript · Svelte · Vite · IndexedDB · Cloudflare Pages
 links:
   - label: Repository
     href: https://github.com/simopzz/tegakko

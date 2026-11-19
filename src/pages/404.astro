@@ -1,26 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import Sheet from '../components/Sheet.astro';
 import { site } from '../site';
 ---
-<Base title={`Sheet not found | ${site.title}`} noindex>
-  <main>
-    <Sheet id="sheet-404" sheet={0} label="Sheet not found" class="missing">
-      <div class="missing-body">
-        <h1 class="sheet-h">Sheet not found</h1>
-        <p>This drawing is not in the set. The full set starts on the cover.</p>
-        <p><a href="/">Back to sheet 01, cover</a></p>
-      </div>
-    </Sheet>
+<Base title={`Page not found | ${site.title}`} noindex>
+  <main class="page">
+    <h1><span class="hl hl-p">Nothing sketched here</span></h1>
+    <p>This address isn't part of the site. Everything lives on one page.</p>
+    <p><a href="/">Back to the start</a></p>
   </main>
 </Base>
-<style>
-  .missing-body {
-    align-self: center;
-    justify-self: start;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    max-width: 40ch;
-  }
-</style>

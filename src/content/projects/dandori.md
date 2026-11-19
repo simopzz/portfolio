@@ -1,8 +1,9 @@
 ---
 title: dandori
 kanji: 段取り
-sheet: 3
+order: 1
 drawingTitle: System arrangement
+stack: Go · templ · htmx · PostgreSQL + pgvector · Supabase · Claude
 links:
   - label: Live app
     href: https://dandori.simopzz.com

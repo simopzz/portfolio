@@ -1,6 +1,6 @@
 # simopzz.com
 
-Simone Pedrazzi's one-page portfolio, built as an engineering drawing set: a cover, general notes, and one sheet per project. Astro, static output, served by Cloudflare.
+Simone Pedrazzi's one-page portfolio, made like a hand-drawn engineering zine: a short intro, things to know, and one sketched system per project. Astro, static output, served by Cloudflare.
 
 ## Develop
 
@@ -16,10 +16,9 @@ mise run clean
 
 ## Edit content
 
-- **Projects:** one Markdown file per sheet in `src/content/projects/`. Frontmatter holds the sheet number, links, revision table and the pending revision; the body is the description. A link with `private: true` renders struck through and unlinked.
-- **Architecture drawings:** `src/drawings/<project>.ts`, with a `wide` (desktop) and a `tall` (phone) layout in SVG user units.
-- **Name, role, email, profile links, site revision:** `src/site.ts`.
-- **General notes:** the `notes` list in `src/pages/index.astro`.
+- **Projects:** one Markdown file per project in `src/content/projects/`. Frontmatter holds the page order, the "built with" stack line and the links; the body is the description. A link with `private: true` renders struck through and unlinked. The revision history and pending revision in frontmatter are kept as a record but not shown.
+- **Architecture drawings:** `src/drawings/<project>.ts`, with a `wide` (desktop) and a `tall` (phone) layout in SVG user units. The page redraws them in marker.
+- **Name, role, email, profile links, things to know:** `src/site.ts` (`about` is the "Things to know" list).
 
 ## Deploy (Cloudflare)
 
@@ -64,4 +63,4 @@ mise run infra:plan                                        # expect: No changes
 
 ## Credits
 
-Lettering: [osifont](https://github.com/hikikomori82/osifont) (ISO 3098), GPL with font exception, self-hosted in `public/fonts/`.
+Type: [Caveat Brush](https://fonts.google.com/specimen/Caveat+Brush) for the hand lettering and [Shantell Sans](https://shantellsans.com) for reading text, both SIL OFL, self-hosted in `public/fonts/`.

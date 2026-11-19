@@ -16,8 +16,6 @@ export type Layout = {
   boundary?: { x: number; y: number; w: number; h: number; label?: Text; note?: Text };
   shapes: Shape[];
   links: Link[];
-  /** redline revision clouds around pending work, each with its tag */
-  clouds?: { x: number; y: number; w: number; h: number; tag: Text }[];
 };
 
 export type Drawing = { wide: Layout; tall: Layout };

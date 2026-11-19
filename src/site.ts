@@ -7,7 +7,14 @@ export const site = {
   email: 'pedra89@gmail.com',
   github: 'https://github.com/simopzz',
   linkedin: 'https://www.linkedin.com/in/simopzz/',
-  // the drawing set's own revision: bump when the site changes materially
-  rev: 'A',
-  issued: '2026-11-19',
+  // the about facts; every page that states them reads them from here
+  about: [
+    'Senior engineer. Works mainly in Python, on cloud platforms, designing distributed backend systems.',
+    'Usual tools: FastAPI, PostgreSQL, Docker, Kubernetes, AWS and GCP.',
+    'Builds with microservices and Domain-Driven Design, shipped through CI/CD.',
+    'Raises code quality, tightens development workflows, and integrates AI solutions.',
+    'Has led cross-functional teams and argued for clean architecture.',
+    'Industries so far: AI-driven finance, biotech, fashion.',
+    'Fluent in Italian and English.',
+  ],
 };

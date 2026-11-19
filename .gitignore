@@ -23,6 +23,12 @@ dist/
 .gemini/settings.json
 .opencode/commands/impeccable.md
 
+# design checks: local Chrome profiles
+.taste-skill/chrome-*/
+.taste-skill/work/
+.taste-skill/gate/
+.taste-skill/gate.json
+
 # OS generated files
 .DS_Store
 .DS_Store?
@@ -37,3 +43,8 @@ infra/.terraform/
 infra/*.tfstate
 infra/*.tfstate.*
 infra/terraform.tfvars
+
+# browser screenshots from design checks
+.playwright-mcp/
+
+.env

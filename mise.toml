@@ -1,0 +1,28 @@
+[tools]
+node = "26.12.0"
+
+# `mise install` sets up Node, then installs Astro and the other npm dependencies.
+[hooks]
+postinstall = "npm install"
+
+[tasks.dev]
+description = "Serve the site locally with hot reload on http://localhost:4321 (add `-- --host` to test from a phone on the same network)"
+run = "npx astro dev"
+
+[tasks.build]
+description = "Build the static site into dist/"
+run = "npx astro build"
+
+[tasks.preview]
+description = "Build, then serve dist/ exactly as it will ship"
+depends = ["build"]
+run = "npx astro preview"
+
+[tasks.deploy]
+description = "Build and deploy to Cloudflare (run `npx wrangler login` once first)"
+depends = ["build"]
+run = "npx wrangler deploy"
+
+[tasks.clean]
+description = "Remove build output and Astro's cache"
+run = "rm -rf dist .astro"

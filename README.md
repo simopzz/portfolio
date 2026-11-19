@@ -1,38 +1,36 @@
-# Simone Pedrazzi's Portfolio Website
+# simopzz.com
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b3a363a6-0a1b-4cee-b07f-3193440e7ff0/deploy-status)](https://app.netlify.com/projects/vocal-zabaione-58bfbe/deploys)
+Simone Pedrazzi's one-page portfolio, built as an engineering drawing set: a cover, general notes, and one sheet per project. Astro, static output, served by Cloudflare.
 
-This is a personal portfolio website for Simone Pedrazzi, a Senior Engineer. It's a single-page site built with Hugo and the `hugo-scroll` theme, showcasing skills in Python, Cloud, and Distributed Architecture.
+## Develop
 
-## Getting Started
+Tools are managed with [mise](https://mise.jdx.dev). Astro is a project dependency, not a global install: `mise install` sets up the pinned Node and runs `npm install`.
 
-### Prerequisites
-
-Ensure you have [Hugo](https://gohugo.io/getting-started/installing/) installed.
-
-### Local Development
-
-To run the website locally:
-
-```bash
-hugo server
+```sh
+mise install
+mise run dev       # http://localhost:4321, hot reload; `mise run dev -- --host` to open it from a phone
+mise run preview   # build, then serve dist/ exactly as it ships
+mise run build     # static site in dist/
+mise run clean
 ```
 
-Access it at `http://localhost:1313/`. Changes will hot-reload.
+## Edit content
 
-### Building for Deployment
+- **Projects:** one Markdown file per sheet in `src/content/projects/`. Frontmatter holds the sheet number, links, revision table and the pending revision; the body is the description. A link with `private: true` renders struck through and unlinked.
+- **Architecture drawings:** `src/drawings/<project>.ts`, with a `wide` (desktop) and a `tall` (phone) layout in SVG user units.
+- **Name, role, email, profile links, site revision:** `src/site.ts`.
+- **General notes:** the `notes` list in `src/pages/index.astro`.
 
-To generate static files for deployment:
+## Deploy (Cloudflare)
 
-```bash
-hugo
+`wrangler.jsonc` serves `dist/` as static assets, with `dist/404.html` for missing pages.
+
+```sh
+mise run deploy    # build, then wrangler deploy (needs `npx wrangler login` once)
 ```
 
-This creates files in the `public` directory.
+Then attach `simopzz.com` as a custom domain on the Worker. Redirecting `simopzz.dev` and `www.simopzz.dev` to `simopzz.com` is a host-level redirect, so it is set up in the Cloudflare dashboard (a Redirect Rule or Bulk Redirect), not in this repo.
 
-## Project Structure
+## Credits
 
-*   **Content:** Markdown files in `content/en/`. Homepage sections are in `content/en/homepage/`.
-*   **Configuration:** `hugo.toml` for site-wide settings.
-*   **Layouts:** Customizations to the theme, e.g., `layouts/_default/index.html`.
-*   **Assets:** Images in `assets/images` and `static/images`.
+Lettering: [osifont](https://github.com/hikikomori82/osifont) (ISO 3098), GPL with font exception, self-hosted in `public/fonts/`.

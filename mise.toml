@@ -31,9 +31,9 @@ run = "rm -rf dist .astro"
 [tasks."infra:plan"]
 description = "Show what OpenTofu would change in Cloudflare (needs CLOUDFLARE_API_TOKEN and infra/terraform.tfvars)"
 dir = "infra"
-run = "tofu init -input=false >/dev/null && tofu plan"
+run = "./tf init -input=false >/dev/null && ./tf plan"
 
 [tasks."infra:apply"]
 description = "Apply the Cloudflare zones, DNS records and redirects"
 dir = "infra"
-run = "tofu init -input=false >/dev/null && tofu apply"
+run = "./tf init -input=false >/dev/null && ./tf apply"

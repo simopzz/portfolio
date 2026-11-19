@@ -6,9 +6,9 @@ variable "account_id" {
 variable "netlify_bridge" {
   description = <<-EOT
     Keep simopzz.com pointing at the old Netlify site while the zone moves to Cloudflare.
-    Set to false only at cutover, immediately before the first `wrangler deploy`:
-    the Worker's custom domain cannot be attached while this record exists.
+    Off since the cutover (2026-11-19). Turning it on is the rollback, and only works while the
+    Netlify site exists; remove the Worker's custom domain first, since the two records conflict.
   EOT
   type        = bool
-  default     = true
+  default     = false
 }

@@ -1,0 +1,18 @@
+#!/bin/sh
+# tofu, run in infra/ with the R2 state credentials derived from the infra token:
+# Cloudflare's S3 access key is the token's ID, and the secret is the SHA-256 of the token value.
+set -eu
+: "${CLOUDFLARE_API_TOKEN:?export the infra token first: read -rs CLOUDFLARE_API_TOKEN && export CLOUDFLARE_API_TOKEN}"
+cd "$(dirname "$0")"
+# A user token verifies under /user, an account-owned token under /accounts/<id>.
+account=$(sed -n 's/^account_id *= *"\([0-9a-f]*\)".*/\1/p' terraform.tfvars 2>/dev/null)
+token_id() {
+  curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" "https://api.cloudflare.com/client/v4/$1/tokens/verify" 2>/dev/null \
+    | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4
+}
+AWS_ACCESS_KEY_ID=$(token_id user || true)
+[ -n "$AWS_ACCESS_KEY_ID" ] || AWS_ACCESS_KEY_ID=$(token_id "accounts/$account" || true)
+[ -n "$AWS_ACCESS_KEY_ID" ] || { echo "tf: Cloudflare rejected CLOUDFLARE_API_TOKEN" >&2; exit 1; }
+AWS_SECRET_ACCESS_KEY=$(printf %s "$CLOUDFLARE_API_TOKEN" | sha256sum | cut -d' ' -f1)
+export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
+exec tofu "$@"

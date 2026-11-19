@@ -92,16 +92,19 @@ doh simopzz.dev NS
 cd infra && tofu refresh && tofu output zone_status   # "active" once Cloudflare has seen the switch
 ```
 
-**9. Verify, still on the old site:**
+**9. Verify, still on the old site.** `curl --doh-url` resolves over HTTPS, so a DNS-intercepting router can't skew the result:
 
 ```sh
-curl -sI https://simopzz.com | head -1                    # 200, still Netlify
-curl -sI https://www.simopzz.com/x?y=1 | grep -i location  # https://simopzz.com/x?y=1
-curl -sI https://simopzz.dev/x | grep -i location          # https://simopzz.com/x
-curl -sI https://dandori.simopzz.com | head -1             # as before
+c() { curl -s -o /dev/null --doh-url https://cloudflare-dns.com/dns-query -w '%{http_code} %{redirect_url} server=%header{server}\n' "$1"; }
+c https://simopzz.com/                  # 200 server=Netlify (the bridge)
+c 'https://www.simopzz.com/x?y=1'       # 301 https://simopzz.com/x?y=1 server=cloudflare
+c 'https://simopzz.dev/x?y=1'           # 301 https://simopzz.com/x?y=1 server=cloudflare
+c https://dandori.simopzz.com/healthz   # 200
 ```
 
-Also send a test email to any simopzz.com address that Porkbun forwards. Forwarding depends only on the MX records, which are unchanged, but confirm it before relying on it.
+For about 10 minutes after activation, some answers still come from Netlify while resolver caches expire (the Porkbun records had a 600-second TTL).
+
+Also send a test email to any simopzz.com address that Porkbun forwards, and request a dandori magic link to confirm Resend still sends. Forwarding depends only on the MX records, which are unchanged, but confirm it before relying on it.
 
 ## Phase 2: cut over to the new site (about a minute of downtime)
 

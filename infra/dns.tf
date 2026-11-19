@@ -1,4 +1,5 @@
-# Records copied from Porkbun on 2026-11-19. The apex of simopzz.com is not
+# Records copied from the Porkbun DNS page on 2026-11-19 (the two stale
+# _acme-challenge TXTs were left behind: nothing issues certificates via DNS). The apex of simopzz.com is not
 # listed: the Worker's custom domain (wrangler.jsonc) creates and owns it.
 # ttl = 1 means automatic.
 
@@ -77,6 +78,32 @@ resource "cloudflare_dns_record" "com_dmarc" {
   type    = "TXT"
   content = "\"v=DMARC1; p=none;\""
   ttl     = 1
+}
+
+# Resend: dandori's Supabase sends magic-link email from simopzz.com
+# through it. DNS only; proxying these would break sending.
+resource "cloudflare_dns_record" "resend" {
+  for_each = {
+    "send.simopzz.com"  = "send.forge.rmta.net"
+    "rsend.simopzz.com" = "rsend-euw1.forge.rmta.net"
+  }
+
+  zone_id = cloudflare_zone.com.id
+  name    = each.key
+  type    = "CNAME"
+  content = each.value
+  proxied = false
+  ttl     = 1
+  comment = "Resend"
+}
+
+resource "cloudflare_dns_record" "resend_dkim" {
+  zone_id = cloudflare_zone.com.id
+  name    = "resend._domainkey.simopzz.com"
+  type    = "TXT"
+  content = "\"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCiIw4NYz+kuwCcAsGMCm/3tqfMegwH/5CHTRqs58eG/Y4vrqVVtm5dem5q5ooxOl41j5KyIVS5zuNl8QhLUxUEV3bk93BDKtOgvnNEbMHbu7EPfdm/eJLwHN1USUBzKx9Hu9+HrAG1oDZw6UKQuG1vi2AUTm+EUKL1hccM/9zLpwIDAQAB\""
+  ttl     = 1
+  comment = "Resend DKIM"
 }
 
 # --- simopzz.dev: redirect only ------------------------------------------

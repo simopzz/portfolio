@@ -151,6 +151,4 @@ curl -sI http://simopzz.com | grep -i location            # https:// (Always Use
 
 ## Day to day afterwards
 
-- **Site changes:** push to `main`. GitHub Actions builds and deploys. Pull requests build and check `infra/` without deploying.
-- **DNS or redirect changes:** edit `infra/`, then run `mise run infra:plan` and `mise run infra:apply` with the infra token exported.
-- **State:** OpenTofu keeps its state in `infra/terraform.tfstate`, which is gitignored and holds no secrets. Back it up after each apply. If it is ever lost, re-import the resources with `tofu import` rather than letting OpenTofu recreate zones that already exist.
+See the README: *Deploy* for site and DNS changes, and *Infra state* for where OpenTofu's state lives (an R2 bucket, since the migration).

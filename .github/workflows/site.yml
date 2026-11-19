@@ -1,0 +1,40 @@
+name: Site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two deploys at once; a newer push supersedes a queued one.
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Installs the Node and OpenTofu pinned in mise.toml; its postinstall hook runs npm install.
+      - uses: jdx/mise-action@v5
+
+      - name: Build
+        run: mise run build
+
+      - name: Check infra config
+        run: |
+          tofu -chdir=infra fmt -check -recursive
+          tofu -chdir=infra init -input=false -backend=false
+          tofu -chdir=infra validate
+
+      - name: Deploy to Cloudflare
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

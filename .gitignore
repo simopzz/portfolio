@@ -1,7 +1,8 @@
-# Hugo
-/public/
-/resources/
-.hugo_build.lock
+# Astro / Cloudflare
+node_modules/
+dist/
+.astro/
+.wrangler/
 
 # Agent skills (installed tooling, not project source)
 # .agents is the canonical install dir; the others are per-agent copies/symlinks.

@@ -104,13 +104,13 @@ c https://dandori.simopzz.com/healthz   # 200
 
 For about 10 minutes after activation, some answers still come from Netlify while resolver caches expire (the Porkbun records had a 600-second TTL).
 
-Also send a test email to any simopzz.com address that Porkbun forwards, and request a dandori magic link to confirm Resend still sends. Forwarding depends only on the MX records, which are unchanged, but confirm it before relying on it.
+Request a dandori magic link to confirm Resend still sends. The MX/SPF records are Porkbun's defaults: mail is only forwarded if a forward exists under *Domain Management → Email Forwarding*. If one does, send a test to it. Forwarding depends only on the MX records, which are unchanged, but confirm it before relying on it.
 
 ## Phase 2: cut over to the new site (about a minute of downtime)
 
 **10. Check the deploy secrets.** `gh secret list --repo simopzz/portfolio` should show `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (set in step 5).
 
-**11. Stop Netlify from building.** In Netlify, open *Site configuration → Build & deploy → Continuous deployment → Stop builds*.
+**11. Stop Netlify from building.** In Netlify, open *Site configuration → Build & deploy → Continuous deployment* and either *Stop builds* or unlink the repository.
 
 - Do this before the merge in step 12. Otherwise Netlify would try to build the Astro branch as Hugo and email you a failure.
 - The currently published Netlify deploy keeps serving through the bridge.

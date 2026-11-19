@@ -38,10 +38,29 @@ mise run clean
 
 OpenTofu's state (the record of which Cloudflare zones, records and rules `infra/` manages) lives in the private R2 bucket `simopzz-tfstate`, not on disk. Any machine with the infra token sees the same state, so there is no file to back up or restore.
 
+On a fresh clone or a new machine:
+
+```sh
+mise install
+cp infra/terraform.tfvars.example infra/terraform.tfvars   # paste the account ID (Cloudflare: Account home → ⋯ → Copy account ID)
+read -rs CLOUDFLARE_API_TOKEN && export CLOUDFLARE_API_TOKEN
+mise run infra:plan                                        # expect: No changes
+```
+
 - `infra/tf` runs `tofu` with the R2 credentials derived from `CLOUDFLARE_API_TOKEN`. Use it for anything beyond plan and apply, such as `infra/tf state list` or `infra/tf import`.
-- A fresh clone needs only `infra/terraform.tfvars` (just the account ID; see the `.example`) and the exported token.
 - **Never apply a plan that adds things that already exist.** If a plan wants to create the live zones or records, OpenTofu isn't reading the right state: stop and check the bucket.
 - R2 keeps no object versions. Before risky state surgery (`state rm`, `import`), take a copy with `infra/tf state pull > /tmp/state.json`.
+
+## Cloudflare tokens
+
+| Token | Lives in | Permissions | Expires |
+|---|---|---|---|
+| `simopzz infra (OpenTofu)` | password manager; exported only while running `infra:*` | All Domains: Zone, DNS, Zone Settings, Dynamic URL Redirects (Edit). Account: Workers R2 Storage (Edit) | 1 year after creation (Nov 2027) |
+| `simopzz site deploy (GitHub Actions)` | repo secret `CLOUDFLARE_API_TOKEN`, next to `CLOUDFLARE_ACCOUNT_ID` | the *Edit Cloudflare Workers* template | never |
+
+- **Renewing the infra token:** before it expires, edit it in the dashboard and move the expiration date out, or create a replacement with the permissions above and save it in the password manager. A new token means new R2 keys, but nothing to update: `infra/tf` derives them on every run.
+- **Replacing the deploy token:** create one from the same template, then run `gh secret set CLOUDFLARE_API_TOKEN --repo simopzz/portfolio` from your own terminal and paste it at the prompt.
+- **`infra/tf` says the token was rejected:** the shell holds the wrong value (often the deploy token) or the token has expired. Re-run the `read -rs` line.
 
 ## Credits
 

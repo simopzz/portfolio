@@ -76,13 +76,20 @@ The output prints two nameservers per domain, which are usually the same pair. T
 
 With `netlify_bridge = true`, simopzz.com stays a DNS-only CNAME to the Netlify site, so nothing changes for visitors.
 
+The records can't be checked over DNS yet: Cloudflare answers `SERVFAIL` for a zone until it is active. To review them, open the Cloudflare dashboard (*simopzz.com → DNS → Records*).
+
 **7. Point Porkbun at Cloudflare.** In Porkbun, open *Domain Management → simopzz.com → Authoritative Nameservers → Edit*. Delete the four `*.ns.porkbun.com` entries and enter the two Cloudflare nameservers from the output. Repeat for simopzz.dev.
 
 **8. Wait for the zones to go active.** This usually takes minutes, and up to 24 hours. Cloudflare emails you when each zone is active. To check by hand:
 
+Some routers and ISPs intercept plain DNS queries (port 53) and answer them from their own cache, so `dig` can show stale or wrong answers. Query over HTTPS instead:
+
 ```sh
-dig +short NS simopzz.com                      # shows the Cloudflare nameservers once switched
-cd infra && tofu refresh && tofu output zone_status
+doh() { curl -s "https://cloudflare-dns.com/dns-query?name=$1&type=$2" -H 'accept: application/dns-json' \
+  | python3 -c 'import sys,json; print([a["data"] for a in json.load(sys.stdin).get("Answer", [])])'; }
+doh simopzz.com NS      # malcolm/monroe.ns.cloudflare.com once switched
+doh simopzz.dev NS
+cd infra && tofu refresh && tofu output zone_status   # "active" once Cloudflare has seen the switch
 ```
 
 **9. Verify, still on the old site:**

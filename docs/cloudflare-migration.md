@@ -27,22 +27,37 @@ The site stays up the whole time, except for about a minute in step 12.
 
 **4. Create the infra API token.** In the dashboard, go to *My Profile → API Tokens → Create Token → Create Custom Token*.
 
-- Name it `simopzz infra (OpenTofu)`.
-- Add these zone permissions, all set to Edit:
-  - *Zone → Zone*
-  - *Zone → DNS*
-  - *Zone → Zone Settings*
-  - *Zone → Dynamic URL Redirects*
-- Set *Account resources* to your account.
-- Set *Zone resources* to *All zones from an account*, your account. The zones don't exist yet, so a specific-zone scope can't be chosen.
-- Keep the token in your password manager. It is only used from your machine.
+1. Name it `simopzz infra (OpenTofu)`.
+2. In the policy's scope dropdown, choose **All Domains**. The default, *Entire Account*, only lists account-wide permissions such as *Account DNS Settings* and *Mass URL Redirects*, none of which are needed. The zones don't exist yet, so a single domain can't be chosen.
+3. Tick **Edit**, not Read, on these four:
 
-**5. Create the deploy API token.** Choose *Create Token* and start from the *Edit Cloudflare Workers* template.
+   | Category | Permission | Used for |
+   |---|---|---|
+   | DNS & Zones | **Zone** | creating the two zones |
+   | DNS & Zones | **DNS** | all records |
+   | DNS & Zones | **Zone Settings** | Always Use HTTPS |
+   | Rules & Configuration | **Dynamic URL Redirects** | the www and .dev 301s |
 
-- Set *Account resources* to your account.
-- Set *Zone resources* to *All zones from an account*. You can narrow it to `simopzz.com` after phase 1.
-- Name it `simopzz site deploy (GitHub Actions)`.
-- Custom domains also touch DNS. If the first deploy fails with an authorization error on the domain, add *Zone → DNS → Edit* for simopzz.com to this token.
+4. Set *Token expiration* to 1 year and leave *Client IP address filtering* empty.
+5. Click *Review token*. The summary should list exactly those four permissions on All Domains. Then click *Create token*.
+6. Save the token in your password manager; Cloudflare shows it once. It is only used from your machine.
+
+**5. Create the deploy API token and hand it to GitHub.**
+
+1. Choose *Create Token*, then *Edit Cloudflare Workers → Use template*.
+2. Name it `simopzz site deploy (GitHub Actions)`.
+3. Check the two policies the template fills in:
+   - *All zones in the account: Workers Routes Write*
+   - *Entire account: Workers Scripts Write, Workers KV Storage Write, Account Settings Read* and about 7 more
+4. Set expiration to *No expiration*, so deploys don't break silently a year from now. Then *Review token → Create token*.
+5. Don't keep a copy anywhere else. From your own terminal (not through an agent session), store it straight as a repo secret, and set the account ID too:
+
+   ```sh
+   gh secret set CLOUDFLARE_API_TOKEN --repo simopzz/portfolio     # paste at the prompt
+   gh secret set CLOUDFLARE_ACCOUNT_ID --repo simopzz/portfolio --body <account id>
+   ```
+
+If the first deploy fails with an authorization error on the custom domain, add *DNS: Edit* for simopzz.com to this token.
 
 ## Phase 1: move DNS to Cloudflare (visitors notice nothing)
 
@@ -52,8 +67,8 @@ The site stays up the whole time, except for about a minute in step 12.
 mise install                                   # Node, OpenTofu, npm deps
 cp infra/terraform.tfvars.example infra/terraform.tfvars
 $EDITOR infra/terraform.tfvars                 # paste account_id; leave netlify_bridge = true
-export CLOUDFLARE_API_TOKEN=<infra token from step 4>
-mise run infra:plan                            # read it: 2 zones, records, 2 rulesets, 2 settings
+read -rs CLOUDFLARE_API_TOKEN && export CLOUDFLARE_API_TOKEN   # paste the infra token (step 4): no echo, no history
+mise run infra:plan                            # expect: Plan: 19 to add, 0 to change, 0 to destroy
 mise run infra:apply
 ```
 
@@ -83,12 +98,7 @@ Also send a test email to any simopzz.com address that Porkbun forwards. Forward
 
 ## Phase 2: cut over to the new site (about a minute of downtime)
 
-**10. Add the deploy secrets to GitHub:**
-
-```sh
-gh secret set CLOUDFLARE_API_TOKEN     # deploy token from step 5
-gh secret set CLOUDFLARE_ACCOUNT_ID
-```
+**10. Check the deploy secrets.** `gh secret list --repo simopzz/portfolio` should show `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (set in step 5).
 
 **11. Stop Netlify from building.** In Netlify, open *Site configuration → Build & deploy → Continuous deployment → Stop builds*.
 

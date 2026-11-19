@@ -3,6 +3,25 @@
 /resources/
 .hugo_build.lock
 
+# Agent skills (installed tooling, not project source)
+# .agents is the canonical install dir; the others are per-agent copies/symlinks.
+.agent/skills/*
+.agents/skills/*
+.claude/skills/*
+.gemini/skills/*
+.hermes/skills/*
+.opencode/skills/*
+.pi/skills/*
+
+# Impeccable skill extras (hook/config files written at install time)
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.claude/agents/impeccable-*.md
+.claude/settings.local.json
+.codex/hooks.json
+.gemini/settings.json
+.opencode/commands/impeccable.md
+
 # OS generated files
 .DS_Store
 .DS_Store?

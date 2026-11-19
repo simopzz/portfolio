@@ -23,13 +23,9 @@ mise run clean
 
 ## Deploy (Cloudflare)
 
-`wrangler.jsonc` serves `dist/` as static assets, with `dist/404.html` for missing pages.
-
-```sh
-mise run deploy    # build, then wrangler deploy (needs `npx wrangler login` once)
-```
-
-Then attach `simopzz.com` as a custom domain on the Worker. Redirecting `simopzz.dev` and `www.simopzz.dev` to `simopzz.com` is a host-level redirect, so it is set up in the Cloudflare dashboard (a Redirect Rule or Bulk Redirect), not in this repo.
+- **Site:** a push to `main` builds and deploys via GitHub Actions (`.github/workflows/site.yml`); pull requests only build. `wrangler.jsonc` serves `dist/` as a Worker on the `simopzz.com` custom domain. Manual deploy: `npx wrangler login` once, then `mise run deploy`.
+- **DNS and redirects:** `infra/` (OpenTofu) owns both zones, the DNS records, and the 301s from `www.simopzz.com` and `simopzz.dev`. `mise run infra:plan` / `mise run infra:apply` with `CLOUDFLARE_API_TOKEN` exported.
+- **First-time setup** (Porkbun nameservers, Cloudflare tokens, Netlify shutdown): [docs/cloudflare-migration.md](docs/cloudflare-migration.md).
 
 ## Credits
 

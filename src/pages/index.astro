@@ -38,7 +38,7 @@ const marks = ['hl-p', 'hl-t'];
           <button class="copy" type="button" data-copy={site.email}>copy</button>
           <span class="visually-hidden" role="status"></span>
         </div>
-        <p class="else"><a href={site.github} rel="me">GitHub</a> · <a href={site.linkedin} rel="me">LinkedIn</a></p>
+        <p class="else"><a href={site.github} rel="me noopener noreferrer" target="_blank">GitHub <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 H6 a2 2 0 0 0 -2 2 v12 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 v-4" /><path d="M9 15 21 3 M14 3 h7 v7" /></svg></a> · <a href={site.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 H6 a2 2 0 0 0 -2 2 v12 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 v-4" /><path d="M9 15 21 3 M14 3 h7 v7" /></svg></a></p>
       </div>
     </header>
 
@@ -72,7 +72,7 @@ const marks = ['hl-p', 'hl-t'];
           <ul class="links">
             {p.data.links.map((l) => (
               <li>
-                {l.private ? <span class="closed">{l.label}: <s>{host(l.href)}</s></span> : <a href={l.href}>{l.label} <span>{host(l.href)}</span></a>}
+                {l.private ? <span class="closed">{l.label}: <s>{host(l.href)}</s></span> : <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label} <span>{host(l.href)}</span> <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 H6 a2 2 0 0 0 -2 2 v12 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 v-4" /><path d="M9 15 21 3 M14 3 h7 v7" /></svg></a>}
                 {l.note && <em>({l.note})</em>}
               </li>
             ))}
@@ -89,7 +89,7 @@ const marks = ['hl-p', 'hl-t'];
         <button class="copy" type="button" data-copy={site.email}>copy</button>
         <span class="visually-hidden" role="status"></span>
       </div>
-      <p class="else"><a href={site.github} rel="me">GitHub</a> · <a href={site.linkedin} rel="me">LinkedIn</a></p>
+      <p class="else"><a href={site.github} rel="me noopener noreferrer" target="_blank">GitHub <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 H6 a2 2 0 0 0 -2 2 v12 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 v-4" /><path d="M9 15 21 3 M14 3 h7 v7" /></svg></a> · <a href={site.linkedin} rel="me noopener noreferrer" target="_blank">LinkedIn <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 H6 a2 2 0 0 0 -2 2 v12 a2 2 0 0 0 2 2 h12 a2 2 0 0 0 2 -2 v-4" /><path d="M9 15 21 3 M14 3 h7 v7" /></svg></a></p>
     </footer>
   </main>
 

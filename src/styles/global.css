@@ -68,6 +68,12 @@ a:not(.mail) {
 }
 a:not(.mail):hover { background-size: 100% 100%; }
 
+/* external links open a new tab; the little arrow out of the box says so */
+.ext {
+  width: 0.75em; height: 0.75em; margin-left: 0.12em; vertical-align: -0.05em;
+  fill: none; stroke: currentcolor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
+}
+
 /* highlighter swipe behind a heading */
 .hl {
   background: linear-gradient(100deg, transparent 0.4em, var(--hl) 0.5em, var(--hl) calc(100% - 0.4em), transparent calc(100% - 0.25em)) no-repeat 0 62% / 100% 58%;

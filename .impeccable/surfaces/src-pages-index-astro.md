@@ -10,10 +10,10 @@ related_targets: []
 **Mode:** Persuade. One page: recruiters, prospective clients and engineers arrive from LinkedIn, GitHub or a CV link (often on a phone, about 30 seconds) and must leave believing Simone is a senior backend engineer who designs systems and ships whole products, then email.
 
 - **Action:** email pedra89@gmail.com, as a mailto link in a hand-drawn box with a copy button, at the top and again at the close. GitHub and LinkedIn are secondary links.
-- **Proof:** dandori (live app, public repo, decision records) and tegakko (private repo: its URL is struck through, unlinked, with "private until refactor"). Each project is a content file; its drawing comes from `src/drawings/`.
+- **Proof:** dandori (live app, public repo, decision records) and tegakko (public repo, linked). Each project is a content file; its drawing comes from `src/drawings/`.
 - **Copy:** the about facts read as a checklist ("Things to know"), same facts, no new claims.
 - **Keep:** name, the role line "Senior Engineer — Python, Cloud, Distributed Architecture", title and description meta, the canonical simopzz.com domain.
-- **Chosen by Simone in prototype rounds (2026-11-19):** Caveat Brush for hand lettering, Shantell Sans for body, highlighter underline for links; no M1 cloud on the dandori drawing; no changelog on project sections; a plain straight strike on the private repo URL; the closing email boxed like the top one, never styled as a link.
+- **Chosen by Simone in prototype rounds (2026-11-19):** Caveat Brush for hand lettering, Shantell Sans for body, highlighter underline for links; no M1 cloud on the dandori drawing; no changelog on project sections; a plain straight strike on the private repo URL; the closing email boxed like the top one, never styled as a link; external links open a new tab, marked with a small arrow-out-of-box icon after the link text.
 - **Anti-goals:** the previous drawing-set look (title blocks, zone grids, sheet numbering), dark terminal, invented metrics or claims outside PRODUCT.md, mascots.
 
 ## Direction contract
